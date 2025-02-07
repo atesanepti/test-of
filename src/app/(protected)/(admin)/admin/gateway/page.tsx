@@ -6,12 +6,8 @@ import { Prisma } from "@prisma/client";
 import React, { useState } from "react";
 import HomeHeader from "@/components/headers/HomeHeader";
 import { MoonLoader } from "react-spinners";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Gateway | CasinoCity24",
-  description: "Add Payment gateway",
-};
+
 
 const GetwayPage = () => {
   const [gateway, setGateway] = useState<Prisma.gatewayGetPayload<object>>();

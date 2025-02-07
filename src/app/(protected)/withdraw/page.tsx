@@ -6,13 +6,6 @@ import { Prisma } from "@prisma/client";
 import PageHeader from "@/components/headers/PageHeader";
 import WithdrawRules from "@/components/withdraw/WithdrawRules";
 import WithdrawForm from "@/components/withdraw/WithdrawForm";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Withdraw | CasinoCity24",
-  description:
-    "Withdraw your winnings quickly and securely. Enjoy fast payouts at Bangladesh’s top online casino and betting site.",
-};
 
 const WithdrawPage = () => {
   const [gateway, setGateway] = useState<Prisma.gatewayGetPayload<object>>();
