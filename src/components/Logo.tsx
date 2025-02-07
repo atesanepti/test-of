@@ -9,7 +9,7 @@ const Logo = () => {
       src={logo}
      
       alt="Casino Ciry 247"
-      className="w-32"
+      className="w-28"
       placeholder="blur"
     />
   );

@@ -4,6 +4,13 @@ import HomeHeader from "@/components/headers/HomeHeader";
 import SettingForm from "@/components/site/SettingForm";
 import Agents from "@/components/site/Agents";
 import Contact from "@/components/site/Contact";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Site Setting | CasinoCity24",
+  description:
+    "Customize and manage your site settings. Control features, preferences, and configurations for your Bangladesh casino and betting site.",
+};
 
 const SiteSetting = () => {
   return (

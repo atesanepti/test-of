@@ -5,7 +5,12 @@ import Stictics from "@/components/dashboard/Stictics";
 import SummaryStatistics from "@/components/dashboard/SummaryStatistics";
 import Chart from "@/components/dashboard/Chart";
 import DataLoader from "@/components/DataLoade";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Dashboard | CasinoCity24",
+  description:
+    "Manage users, monitor activities, and oversee transactions easily with the admin dashboard. Stay in control of your Bangladesh casino and betting site.",
+};
 const Dashboard = () => {
   const request = fetch(
     `${process.env.NEXT_PUBLIC_APP}/api/admin/statistics`

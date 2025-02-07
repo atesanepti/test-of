@@ -4,7 +4,14 @@ import PageHeader from "@/components/headers/PageHeader";
 import { useCurrentUser } from "@/hook/useGetUser";
 import { useFetchUserQuery } from "@/lib/features/api/usersApiSlice";
 import { Copy } from "lucide-react";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Refer  | CasinoCity24",
+  description:
+    "Share your referral code and earn rewards! Invite friends to join Bangladesh’s top online casino and betting site and win together.",
+};
 
 const ReferCodePage = () => {
   const user = useCurrentUser();

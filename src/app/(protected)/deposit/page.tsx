@@ -10,6 +10,13 @@ import DepositRules from "@/components/deposit/DepositRules";
 import PaymentMethods from "@/components/getway/PaymentMethods";
 import { Prisma } from "@prisma/client";
 import PageHeader from "@/components/headers/PageHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Deposit | CasinoCity24",
+  description:
+    "Deposit funds easily and securely to your account. Start playing and winning real money at Bangladesh’s top online casino and betting site.",
+};
 
 const DepositPage = () => {
   const [gateway, setGateway] = useState<Prisma.gatewayGetPayload<object>>();

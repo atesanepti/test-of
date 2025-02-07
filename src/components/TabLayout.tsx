@@ -9,9 +9,10 @@ const TabLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   return (
-    <div className="container relative flex flex-col h-screen">
-      <main className="flex-1 overflow-auto scrollbar-hide">{children}</main>
-      <nav className=" flex items-center justify-between py-2  rounded-t-2xl bg-primary border border-border">
+    <div className=" relative  h-screen">
+      <main className=" overflow-auto scrollbar-hide pb-16">{children}</main>
+
+      <nav className="fixed bottom-0 left-0 md:left-[49.5%] md:-translate-x-1/2 w-full md:w-[550px] flex items-center justify-between py-2  rounded-t-2xl bg-primary border border-border">
         <Link
           href="/"
           className={cn(

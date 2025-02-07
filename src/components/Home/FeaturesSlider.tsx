@@ -26,7 +26,7 @@ const FeaturesSlider = () => {
               <div className="p-1">
                 <Image
                   src={silder_1}
-               
+                  placeholder="blur"
                   alt="slider"
                   className="w-full aspect-[10/4] rounded-lg object-cover"
                 />

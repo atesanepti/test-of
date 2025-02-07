@@ -11,7 +11,7 @@ import TabLayout from "@/components/TabLayout";
 
 export default function Home() {
   return (
-    <div className="forg-bg">
+    <div className="forg-bg overflow-x-hidden">
       <TabLayout>
         <HomeHeader />
 
