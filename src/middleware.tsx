@@ -19,7 +19,8 @@ export default auth(async (req) => {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isApiRoute = nextUrl.pathname.startsWith(apiAuthRoutePrefix);
-
+  console.log("pathname ", nextUrl.pathname);
+  console.log("session ", req.auth);
   if (session && isAuthRoute) {
     return Response.redirect(new URL("/", nextUrl));
   }
@@ -32,9 +33,6 @@ export default auth(async (req) => {
       new URL(`/signin?redirect=${encodeCallbackUrl}`, nextUrl)
     );
   }
-
-
-
 
   // if (nextUrl.pathname === EMAIL_VERIFY) {
   //   const url = new URL(req.url);
