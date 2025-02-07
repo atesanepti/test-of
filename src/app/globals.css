@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive-foreground: 0 0% 98%;
+    --input: linear-gradient(
+      180deg,
+      rgba(35, 85, 250, 0.5),
+      rgba(32, 19, 27, 0)
+    );
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    min-height: 100vh;
+    width: 100%;
+  }
+}
+
+@layer utilities {
+  .container {
+    max-width: 97%;
+    margin-inline: auto;
+  }
+  @media screen and (min-width: 600px) {
+    .container {
+      max-width: 500px;
+    }
+  }
+  @media screen and (min-width: 750px) {
+    .container {
+      max-width: 550px;
+    }
+  }
+}
+
+/* bg styles for signin and signup page */
+.auth-bg {
+  background: url("../../public/assets/bg.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.auth-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../../public//assets/overllay.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.forg-bg {
+  background: url("../../public/assets/bg-f.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-attachment: fixed;
+}
+.forg-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../../public//assets/overllay.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.slot-bg {
+  background: url("../../public/assets/slot/bg.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.wheel-bg {
+  background: url("../../public/assets/jack-pot-bg.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+/* primary button styles */
+.button-bg {
+  background: url("../../public/assets/bg-button.png") no-repeat;
+  background-position: center;
+}
+
+.bg-input {
+  background: linear-gradient(
+    180deg,
+    rgba(19, 22, 32, 0.5) 0%,
+    rgba(19, 22, 32, 0) 100%
+  );
+}
+
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.crash-bg {
+  background: url("../../public/assets/crash-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* shutter styles */
+svg {
+  width: 100%;
+  height: 200px;
+}
+@keyframes fly {
+  0% {
+    transform: translateY(120px) translateX(-120px) rotate(60deg) scale(0.7);
+  }
+  100% {
+    transform: translateY(120px) translateX(300px) rotate(70deg) scale(0.7);
+  }
+}
+.rocket {
+  animation: fly 4s linear forwards;
+}
+.flames {
+  animation: flicker 0.2s infinite alternate;
+}
+.smoke {
+  animation: smoke 1s infinite;
+  opacity: 0.5;
+}
+
+@keyframes flicker {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+@keyframes smoke {
+  0% {
+    opacity: 0.3;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(10px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0px) scale(1.5);
+  }
+}
+

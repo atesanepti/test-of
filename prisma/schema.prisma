@@ -1,0 +1,214 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  AGENT
+}
+
+model users {
+    id        String @id @default(cuid())
+    fullName  String
+    phone     String
+    email     String @unique
+    password  String
+    role      UserRole @default(USER)
+    isBanned  Boolean @default(false)
+    verified  Boolean @default(true)
+    createdAt DateTime @default(now())
+    my_ref    String?
+    deposits  deposits[]
+    withdraws withdraws[]
+    wallet    wallet?
+    bonus     bonusWallet?
+    my_bets   bets[]
+    logs      log[]
+    tickets   lotteryTickets[]
+    multiplierHistory multiplierHistory? 
+}
+
+enum DepositsStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model deposits {
+    id              String @id @default(cuid())
+    amount          Int
+    status          DepositsStatus @default(PENDING)
+    transaction_id  String
+    walletNumber    String
+    gateway_id      String     
+    gateway         gateway    @relation(fields: [gateway_id], references: [id])
+    user_id         String
+    user            users @relation(fields: [user_id], references: [id])
+    createdAt DateTime @default(now())
+}
+
+enum WithdrawsStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model withdraws {
+    id              String @id @default(cuid())
+    amount          Int
+    status          WithdrawsStatus @default(PENDING)
+    user_id         String
+    user            users @relation(fields: [user_id],references: [id])
+    pay_to          String
+    gateway_id      String     
+    gateway         gateway    @relation(fields: [gateway_id], references: [id])
+    createdAt DateTime @default(now())
+}
+
+model wallet{
+  id              String @id @default(cuid())
+  account         Int @default(0)
+  user_id         String @unique
+  user            users @relation(fields: [user_id], references: [id])
+}
+
+model bonusWallet{
+  id              String @id @default(cuid())
+  account         Int @default(0)
+  user_id         String @unique
+  user            users @relation(fields: [user_id], references: [id])
+}
+
+enum BetStatus {
+  RUNNING
+  LOST
+  WON
+}
+
+model bets{
+  id            String @id @default(cuid())
+  amount        Int
+  status        BetStatus @default(RUNNING)
+  user_id       String
+  user          users @relation(fields: [user_id], references: [id])
+  bet_id        String
+  // bet relation
+}
+
+enum PaymentMethod {
+  BKASH
+  NAGAD
+}
+
+model gateway {
+  id             String     @id @default(cuid())
+  method         PaymentMethod @unique
+  pay_to         String[]
+  isActive       Boolean    @default(true)
+  depositRules   String[]
+  withdrawRules  String[]
+  deposits       deposits[]
+  withdraws        withdraws[]
+}
+
+
+enum BetResult {
+  PROFILT 
+  LOSS
+}
+
+model multiplierHistory {
+    id             String     @id @default(cuid())
+    user_id        String @unique
+    user           users? @relation(fields: [user_id], references: [id])
+    history        multiplierHistoryData[]
+
+}
+
+
+model multiplierHistoryData {
+    id             String     @id @default(cuid())
+    multiplier     Decimal
+    base_amount    Int
+    result         BetResult
+    profit         Int?
+    history_id     String
+    history        multiplierHistory @relation(fields: [history_id], references: [id])
+
+}
+
+enum LogType {
+  DEPOSIT
+  WITHDRAW
+}
+
+model log {
+    id             String     @id @default(cuid())
+    log_type       LogType
+    amount         Int
+    title          String
+    des            String?
+    visited        Boolean @default(false)     
+    user_id        String
+    user           users @relation(fields: [user_id],references: [id])
+    createdAt DateTime @default(now())
+
+}
+
+
+model siteSetting {
+  id                      String @id @default(cuid())
+  referBonus              Int
+  depositBounsPercent     Int
+  minDeposit              Int
+  minWithDraw             Int
+}
+
+enum LotterStatus  {
+  CHECKING
+  UNMATCHED
+  MATCHED
+}
+
+model lotteryTickets {
+  id                      String @id @default(cuid())
+  amount                  Int
+  status                  LotterStatus @default(CHECKING)
+  prize                   Int @default(0)
+  userId                  String
+  users                   users @relation(fields: [userId], references: [id])
+  lotteryID               String
+  lottery                 lottery @relation(fields: [lotteryID], references: [id])
+  createdAt DateTime @default(now())
+
+}
+model lottery {
+  id                      String @id @default(cuid())
+  tickets                 lotteryTickets[]        
+}
+
+model contact {
+  id                      String @id @default(cuid())
+  whatsapp                String?
+  facebook                String?
+  telegram                String?
+}
+
+model siteUpdate {
+  id                      String @id @default(cuid())
+  updateMessage           String?
+}
