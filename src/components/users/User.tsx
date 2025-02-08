@@ -4,7 +4,7 @@ import {
   useUserUpdateMutation,
 } from "@/lib/features/api/usersApiSlice";
 import { useParams } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 
 import moment from "moment";
 import { format } from "@/lib/currency";
@@ -21,12 +21,12 @@ import { UserPaymentPieChart } from "./UserPaymentPieChart";
 import { cn } from "@/lib/utils";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import DataLoader from "../DataLoade";
 
 const User = () => {
   const { id } = useParams();
-  const { data, error, isLoading } = useFetchUserQuery({
+  const { data, isLoading } = useFetchUserQuery({
     id: Array.isArray(id) ? id[0] : id!,
   });
 
