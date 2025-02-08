@@ -1,6 +1,5 @@
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { db } from "@/../prisma/index";
-
+import { db } from "@/lib/prisma";
 export const GET = async () => {
   try {
     const user = await getCurrentUser();

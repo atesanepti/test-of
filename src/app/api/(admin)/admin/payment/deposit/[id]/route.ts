@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import fetchSiteInfo from "@/data/siteSetting";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { createLog } from "@/lib/log";
@@ -8,7 +8,7 @@ import { NextRequest } from "next/server";
 
 export const PUT = async (
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> } 
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   const { status } = (await req.json()) as UpdateDepositStatus;
 

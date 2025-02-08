@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { UserRole } from "@prisma/client";
 

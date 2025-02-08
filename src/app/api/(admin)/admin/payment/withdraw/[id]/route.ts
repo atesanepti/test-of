@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { createLog } from "@/lib/log";
 import { UpdateWithdrawStatus } from "@/types/interface";

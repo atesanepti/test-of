@@ -2,7 +2,7 @@
 
 import { signupSchema } from "@/schema";
 import { z } from "zod";
-import { db } from "../../prisma";
+import { db } from "@/lib/prisma";
 import { findUserByEmail, findUserByRef } from "@/data/user";
 import bcrypt from "bcryptjs";
 import random from "randomstring";

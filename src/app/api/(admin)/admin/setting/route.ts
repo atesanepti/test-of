@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import { SiteSettingInput } from "@/types/interface";
 import { Prisma } from "@prisma/client";
 import { NextRequest } from "next/server";

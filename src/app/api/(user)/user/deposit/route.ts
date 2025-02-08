@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import fetchSiteInfo from "@/data/siteSetting";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { createLog } from "@/lib/log";

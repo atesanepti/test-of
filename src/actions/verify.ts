@@ -2,7 +2,7 @@
 import { findUserByEmail } from "@/data/user";
 import { verifySchema } from "@/schema";
 import zod from "zod";
-import { db } from "../../prisma";
+import { db } from "@/lib/prisma";
 import {
   generateEmailVerificationToken,
   verifyEmailVerificationToken,

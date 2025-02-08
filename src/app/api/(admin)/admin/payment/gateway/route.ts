@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import { CreatePaymentGateway } from "@/types/interface";
 import { NextRequest } from "next/server";
 
@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest) => {
       { success: true, message: "Getway added" },
       { status: 200 }
     );
-  } catch  {
+  } catch {
     return Response.json(
       { success: false, message: "Unknown Error Try agin" },
       { status: 500 }

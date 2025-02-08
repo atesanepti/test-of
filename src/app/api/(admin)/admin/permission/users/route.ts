@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { NextRequest } from "next/server";
-import { db } from "../../../../../../../prisma";
+import { db } from "@/lib/prisma";
 
 export const GET = async (req: NextRequest) => {
   try {

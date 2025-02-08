@@ -1,4 +1,4 @@
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
 export const PUT = async (

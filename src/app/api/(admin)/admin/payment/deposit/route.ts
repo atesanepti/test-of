@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 import { DepositsStatus, PaymentMethod, Prisma } from "@prisma/client";
 import { subDays, startOfDay, endOfDay } from "date-fns";

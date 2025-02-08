@@ -1,4 +1,4 @@
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { createLog } from "@/lib/log";
 import { LotteryResultInput } from "@/types/interface";
 import { NextRequest } from "next/server";

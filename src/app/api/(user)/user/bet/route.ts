@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { BetUpdateInput } from "@/types/interface";
 import { NextRequest } from "next/server";
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 
 export const PUT = async (req: NextRequest) => {
   const { operation, amount, accountType } =

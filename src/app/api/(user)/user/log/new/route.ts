@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { db } from "../../../../../../../prisma";
+import { db } from "@/lib/prisma";
 
 export const GET = async () => {
   try {

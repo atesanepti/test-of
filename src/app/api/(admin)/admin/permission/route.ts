@@ -1,5 +1,4 @@
-import { db } from "@/../prisma";
-
+import { db } from "@/lib/prisma";
 export const GET = async () => {
   try {
     const agents = await db.users.findMany({
@@ -23,4 +22,3 @@ export const GET = async () => {
     );
   }
 };
-

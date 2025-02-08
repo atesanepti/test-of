@@ -1,4 +1,4 @@
-import { db } from "@/../prisma/index";
+import { db } from "@/lib/prisma";
 import { UpdatePaymentGetway } from "@/types/interface";
 import { NextRequest } from "next/server";
 

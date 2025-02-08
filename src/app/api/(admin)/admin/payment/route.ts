@@ -1,7 +1,8 @@
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { subMonths, startOfMonth, endOfMonth, format } from "date-fns";
 
 export const GET = async () => {
+  
   try {
     const now = new Date();
     const startDate = startOfMonth(subMonths(now, 5)); // 6 months ago (including current month)

@@ -1,6 +1,6 @@
 import { CreateWithdraw } from "@/types/interface";
 import { NextRequest } from "next/server";
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { createLog } from "@/lib/log";
 import fetchSiteInfo from "@/data/siteSetting";

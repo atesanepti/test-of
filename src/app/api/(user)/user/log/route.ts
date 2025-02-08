@@ -1,4 +1,4 @@
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { LogType } from "@prisma/client";
 import { NextRequest } from "next/server";

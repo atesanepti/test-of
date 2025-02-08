@@ -1,4 +1,4 @@
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { ContactInfoCreate } from "@/types/interface";
 import { NextRequest } from "next/server";
 
