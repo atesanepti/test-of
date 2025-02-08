@@ -4,11 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { SlotGameState, useSlot } from "@/lib/store";
 import { useUpdateForBetMutation } from "@/lib/features/api/betApiSlice";
+import toast from "react-hot-toast";
 
 const Bet = () => {
   const mainSound = useRef(new Audio("/assets/audio/slot.mp3"));
 
-  const [betAmount, setAmount] = useState(20);
+  const [betAmount, setAmount] = useState("100");
 
   const [betUpdateApi] = useUpdateForBetMutation();
 
@@ -22,14 +23,22 @@ const Bet = () => {
   } = useSlot((state) => state);
 
   const handleBet = () => {
+    if (+betAmount < 100) {
+      return toast.error("Minimum bet amount 100 BDT");
+    }
+
+    if (+betAmount > wallet) {
+      return toast.error("Recharge your wallet");
+    }
+
     mainSound.current.play();
     mainSound.current.volume = 0.5;
-    setBetAmount(betAmount);
-    setProfitAmount(betAmount);
-    setWallet(wallet - betAmount);
+    setBetAmount(+betAmount);
+    setProfitAmount(+betAmount);
+    setWallet(wallet - +betAmount);
     setGamState(SlotGameState.ACTIVE);
 
-    betUpdateApi({ amount: betAmount, operation: "DECREMENT" });
+    betUpdateApi({ amount: +betAmount, operation: "DECREMENT" });
   };
 
   useEffect(() => {
@@ -56,36 +65,36 @@ const Bet = () => {
           placeholder="Enter bet amount"
           className="bg-[#272F48] border-none"
           value={betAmount}
-          onChange={(e) => setAmount(parseInt(e.target.value))}
+          onChange={(e) => setAmount(e.target.value)}
         />
         <div className="flex items-center gap-2">
           <button
             disabled={gameState !== SlotGameState.INACTIVE}
-            onClick={() => setBetAmount(20)}
-            className="cursor-pointer text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
-          >
-            20
-          </button>
-          <button
-            disabled={gameState !== SlotGameState.INACTIVE}
-            onClick={() => setAmount(50)}
-            className="cursor-pointer text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
-          >
-            50
-          </button>
-          <button
-            disabled={gameState !== SlotGameState.INACTIVE}
-            onClick={() => setBetAmount(100)}
-            className="cursor-pointer text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
+            onClick={() => setAmount("100")}
+            className="cursor-pointer disabled:opacity-50 text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
           >
             100
           </button>
           <button
             disabled={gameState !== SlotGameState.INACTIVE}
-            onClick={() => setBetAmount(500)}
-            className="cursor-pointer text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
+            onClick={() => setAmount("150")}
+            className="cursor-pointer disabled:opacity-50 text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
           >
-            100
+            150
+          </button>
+          <button
+            disabled={gameState !== SlotGameState.INACTIVE}
+            onClick={() => setAmount("200")}
+            className="cursor-pointer disabled:opacity-50 text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
+          >
+            200
+          </button>
+          <button
+            disabled={gameState !== SlotGameState.INACTIVE}
+            onClick={() => setAmount("500")}
+            className="cursor-pointer  disabled:opacity-50 text-white text-xs bg-primary hover:bg-primary/90 border border-border rounded-sm px-2 py-1"
+          >
+            500
           </button>
         </div>
       </div>

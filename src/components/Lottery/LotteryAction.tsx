@@ -6,11 +6,19 @@ import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
 import Loader from "../Loader";
 import { useLottery } from "@/lib/store";
+import { useFetchWalletDataQuery } from "@/lib/features/api/walletApiSlice";
 
 const LotteryAction = () => {
   const [createTicketApi, { isLoading }] = useCreateLotteryTicketsMutation();
   const totalParticipation = useLottery((state) => state.totalParticipation);
+  const { data: wallet } = useFetchWalletDataQuery();
   const handleCreateTicket = () => {
+    if (!wallet || !wallet.payload) {
+      return toast.error("Wait for while");
+    }
+    if (wallet.payload.mainWallet.account < 20) {
+      return toast.error("Recharge your wallet");
+    }
     createTicketApi()
       .unwrap()
       .then((res) => {
@@ -39,7 +47,12 @@ const LotteryAction = () => {
         </span>
       </div>
 
-      <Button onClick={handleCreateTicket} size={"sm"} className="mt-4">
+      <Button
+        disabled={!wallet}
+        onClick={handleCreateTicket}
+        size={"sm"}
+        className="mt-4"
+      >
         Get Tickey
       </Button>
 

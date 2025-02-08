@@ -17,9 +17,10 @@ export const metadata: Metadata = {
 
 const WalletPage = () => {
   return (
-    <div>
-      <WalletHeader />
-      <div className="forg-bg pt-4">
+    
+      <div className="forg-bg pt-4 overflow-x-hidden">
+        <WalletHeader />
+
         <div className="container py-2  px-2">
           <div>
             <h3 className="text-white text-lg font-semibold  relative  flex  justify-center items-center">
@@ -43,7 +44,7 @@ const WalletPage = () => {
           <WalletNavigation />
         </div>
       </div>
-    </div>
+    
   );
 };
 

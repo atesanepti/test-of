@@ -39,7 +39,7 @@ interface GameInitData {
 export default function CrashGame() {
   const [multiplier, setMultiplier] = useState(1.0);
   const [gameState, setGameState] = useState<GAME_STATE>(GAME_STATE.INACTIVE);
-  const [betAmount, setBetAmount] = useState(20);
+  const [betAmount, setBetAmount] = useState(100);
   const [autoCashout, setAutoCashout] = useState(0);
   const [gameData, setGameDate] = useState<GameInitData>({
     betAmount: 0,
@@ -64,7 +64,6 @@ export default function CrashGame() {
     useFetchMultiplierHistoryQuery();
   const historyPayload = history?.payload;
   const mainWallet = wallets?.payload.mainWallet;
-
   useEffect(() => {
     return () => {
       if (gameInterval.current) {
@@ -153,14 +152,12 @@ export default function CrashGame() {
   };
 
   const startCountdown = () => {
-    if ((mainWallet && currentAccount < 20) || betAmount > currentAccount) {
-      return toast.error("Recharge your account");
+    if (betAmount < 100) {
+      return toast.error("Minimum bet amount 100 BDT");
     }
-
-    if (betAmount < 20) {
-      return toast.error("Minimum bet amount 20BDT");
+    if (mainWallet && betAmount > currentAccount) {
+      return toast.error("Recharge your wallet");
     }
-
     setGameState(GAME_STATE.COUNTDOWN);
 
     countdownInterval.current = setInterval(() => {
@@ -181,18 +178,18 @@ export default function CrashGame() {
 
   const gameEndFor = () => {
     if (cashout) {
-      if (Math.random() * (50 - 20) + 20 < 0.01 + multiplier / 100) {
+      if (Math.random() * (50 - 10) + 20 < 0.01 + multiplier / 100) {
         return true;
       }
     } else {
       if (multiplier <= 1.04) {
         if (Math.round(Math.random() * 2) % 2 == 0) return true;
       } else {
-        if (historyPayload!.history!.length == 0) {
+        if (!historyPayload) {
           if (Math.random() < 0.01 + multiplier / 100) {
             return true;
           }
-        } else if (historyPayload!.history!.length > 0) {
+        } else if (historyPayload && historyPayload!.history!.length > 0) {
           const { winingRate, losingRate } = userRecords(
             historyPayload!.history
           );
@@ -258,7 +255,6 @@ export default function CrashGame() {
         handleCashout(multiplier);
       }
     }
-
   }, [multiplier]);
 
   useEffect(() => {
@@ -304,30 +300,30 @@ export default function CrashGame() {
               />
               <div className="flex gap-2 items-center mt-2">
                 <button
-                  onClick={() => setBetAmount(20)}
-                  disabled={gameState === GAME_STATE.ACTIVE}
-                  className="bg-primary hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
-                >
-                  20
-                </button>
-                <button
-                  onClick={() => setBetAmount(50)}
-                  disabled={gameState === GAME_STATE.ACTIVE}
-                  className="bg-primary hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
-                >
-                  50
-                </button>
-                <button
                   onClick={() => setBetAmount(100)}
                   disabled={gameState === GAME_STATE.ACTIVE}
-                  className="bg-primary hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
+                  className="bg-primary disabled:opacity-50 hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
                 >
                   100
                 </button>
                 <button
+                  onClick={() => setBetAmount(150)}
+                  disabled={gameState === GAME_STATE.ACTIVE}
+                  className="bg-primary disabled:opacity-50 hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
+                >
+                  150
+                </button>
+                <button
+                  onClick={() => setBetAmount(200)}
+                  disabled={gameState === GAME_STATE.ACTIVE}
+                  className="bg-primary disabled:opacity-50 hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
+                >
+                  200
+                </button>
+                <button
                   onClick={() => setBetAmount(500)}
                   disabled={gameState === GAME_STATE.ACTIVE}
-                  className="bg-primary hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
+                  className="bg-primary disabled:opacity-50 hover:bg-primary/90 px-2 py-1 rounded-md border border-border cursor-pointer text-white text-xs"
                 >
                   500
                 </button>

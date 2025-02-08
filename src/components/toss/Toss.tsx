@@ -15,7 +15,7 @@ export default function CoinToss() {
   const [coin, setCoin] = useState<Coin | null>(null);
   const [displayResult, setDisplayResult] = useState<Coin | null>(Coin.HEADS);
 
-  const [amount, setAmount] = useState(20);
+  const [amount, setAmount] = useState(100);
 
   const {
     setWallet,
@@ -42,8 +42,8 @@ export default function CoinToss() {
   };
 
   const handleBet = async () => {
-    if (amount < 20) {
-      return toast.error("Minimum bet 20 BDT");
+    if (amount < 100) {
+      return toast.error("Minimum bet amount 100 BDT");
     }
     if (amount > wallet) {
       return toast.error("Recharge your wallet");
@@ -137,28 +137,28 @@ export default function CoinToss() {
 
           <div className="flex items-center gap-2 ">
             <button
-              className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
-              onClick={() => setAmount(20)}
-            >
-              20
-            </button>
-
-            <button
-              className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
-              onClick={() => setAmount(50)}
-            >
-              50
-            </button>
-
-            <button
-              className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
+              className="bg-primary disabled:opacity-50 p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
               onClick={() => setAmount(100)}
             >
               100
             </button>
 
             <button
-              className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
+              className="bg-primary p-2 disabled:opacity-50 rounded-sm cursor-pointer border border-border text-white text-xs"
+              onClick={() => setAmount(150)}
+            >
+              150
+            </button>
+
+            <button
+              className="bg-primary p-2 disabled:opacity-50 rounded-sm cursor-pointer border border-border text-white text-xs"
+              onClick={() => setAmount(200)}
+            >
+              200
+            </button>
+
+            <button
+              className="bg-primary p-2 disabled:opacity-50 rounded-sm cursor-pointer border border-border text-white text-xs"
               onClick={() => setAmount(500)}
             >
               500

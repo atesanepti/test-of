@@ -17,7 +17,7 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
   const spinSound = useRef(new Audio("/assets/audio/spin.mp3"));
 
   const [isWheelSping, setSetWheelSping] = useState(false);
-  const [amount, setAmount] = useState<number>(20);
+  const [amount, setAmount] = useState<number>(100);
   const [isSpinActive, setSpinActive] = useState(false);
   const { wallet, setWallet, setBetAmount, betAmount } = useWheel(
     (state) => state
@@ -59,11 +59,11 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
   }, [isWheelSping]);
 
   const handlePlaceBet = () => {
-    if (amount! < 20) {
-      return toast.error("Minimum Bet amount 20BDT");
+    if (amount! < 100) {
+      return toast.error("Minimum bet amount 100 BDT");
     }
     if (wallet < amount!) {
-      return toast.error("Recharge Your amount");
+      return toast.error("Recharge your wallet");
     }
 
     setBetAmount(amount);
@@ -159,28 +159,28 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
         <div className="flex items-center gap-2 my-2">
           <button
             disabled={isWheelSping}
-            className="bg-primary border border-border rounded-sm cursor-pointer px-1 text-white"
-            onClick={() => setAmount(20)}
-          >
-            20
-          </button>
-          <button
-            disabled={isWheelSping}
-            className="bg-primary border border-border rounded-sm cursor-pointer px-1 text-white"
-            onClick={() => setAmount(50)}
-          >
-            50
-          </button>
-          <button
-            disabled={isWheelSping}
-            className="bg-primary border border-border rounded-sm cursor-pointer px-1 text-white"
+            className="bg-primary border disabled:opacity-50 border-border rounded-sm cursor-pointer px-1 text-white"
             onClick={() => setAmount(100)}
           >
             100
           </button>
           <button
             disabled={isWheelSping}
-            className="bg-primary border border-border rounded-sm cursor-pointer px-1 text-white"
+            className="bg-primary border disabled:opacity-50 border-border rounded-sm cursor-pointer px-1 text-white"
+            onClick={() => setAmount(150)}
+          >
+            150
+          </button>
+          <button
+            disabled={isWheelSping}
+            className="bg-primary border disabled:opacity-50 border-border rounded-sm cursor-pointer px-1 text-white"
+            onClick={() => setAmount(200)}
+          >
+            200
+          </button>
+          <button
+            disabled={isWheelSping}
+            className="bg-primary disabled:opacity-50 border border-border rounded-sm cursor-pointer px-1 text-white"
             onClick={() => setAmount(500)}
           >
             500

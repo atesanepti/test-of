@@ -3,6 +3,9 @@ import { useFetchLotteryTicketsQuery } from "@/lib/features/api/lotteryApiSlice"
 import React, { useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLottery } from "@/lib/store";
+
+import moment from "moment";
+
 const TicketList = () => {
   const setTotalParticipation = useLottery(
     (state) => state.setTotalParticipation
@@ -30,8 +33,11 @@ const TicketList = () => {
             >
               <div className="flex items-start justify-between gap-5">
                 <div className="flex-1">
-                  <span className="text-xs text-muted-foreground flex-1 block">
+                  <span className="relative text-xs text-muted-foreground flex-1 block">
                     Ticket Id
+                    <span className="absolute text-[10px] text-muted-foreground top-0 right-36">
+                      {moment(t.createdAt).format("MMM Do YY")}
+                    </span>
                   </span>
                   <span className="text-xs text-white block ">{t.id}</span>
                 </div>

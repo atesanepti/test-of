@@ -73,7 +73,7 @@ export const GET = async () => {
         history: true,
       },
     });
-    console.log({ history });
+
     return Response.json(
       { message: "History Fetched", success: true, payload: history },
       { status: 200 }

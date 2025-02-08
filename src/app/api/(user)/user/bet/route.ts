@@ -50,7 +50,7 @@ export const PUT = async (req: NextRequest) => {
     });
 
     if (operation === "DECREMENT") {
-      if (amount > wallet!.account) {
+      if (amount > wallet!.account || amount < 100) {
         return Response.json({}, { status: 200 });
       }
 

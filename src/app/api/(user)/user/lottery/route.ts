@@ -15,7 +15,7 @@ export const GET = async () => {
     });
 
     const totalParticipation =
-      (await db.lottery.count({
+      (await db.lotteryTickets.count({
         where: {},
       })) + 400;
 
@@ -35,6 +35,19 @@ export const GET = async () => {
 export const POST = async () => {
   try {
     const user = await getCurrentUser();
+
+    const wallet = await db.wallet.findUnique({
+      where: {
+        user_id: user!.id,
+      },
+    });
+
+    if (wallet!.account < 20) {
+      return Response.json({
+        message: "Unsuccess operation",
+        success: false,
+      });
+    }
 
     let lottery = await db.lottery.findFirst({
       where: {},

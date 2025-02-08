@@ -21,7 +21,7 @@ const Dice = () => {
 
   const [error, setError] = useState<string>("");
 
-  const [amount, setAmount] = useState(20);
+  const [amount, setAmount] = useState(100);
 
   const { wallet, setWallet, betAmount, setBetAmount } = useDice(
     (state) => state
@@ -48,6 +48,7 @@ const Dice = () => {
       toast(`Congratulation You won ${betAmount * 2}`, {
         icon: "👏",
       });
+      setWallet(wallet + betAmount * 2);
       makeBetApi({ amount: betAmount * 2, operation: "INCREMENT" });
     } else {
       toast(`Bad Lucky`, {
@@ -59,8 +60,8 @@ const Dice = () => {
   };
 
   const handleBet = () => {
-    if (amount < 20) {
-      return toast.error("Minimum bet 20 BDT");
+    if (amount < 100) {
+      return toast.error("Minimum bet amount 100 BDT");
     }
     if (amount > wallet) {
       return toast.error("Recharge your wallet");
@@ -74,7 +75,9 @@ const Dice = () => {
   return (
     <main className="pt-[70px] relative">
       <Rule>
-        <button className="bg-input absolute top-5 left-5 text-xs text-white px-2 py-1 rounded-md cursor-pointer hover:pri/90 border border-border">How to play</button>
+        <button className="bg-input absolute top-5 left-5 text-xs text-white px-2 py-1 rounded-md cursor-pointer hover:pri/90 border border-border">
+          How to play
+        </button>
       </Rule>
 
       <div className=" flex justify-around items-center">
@@ -97,23 +100,7 @@ const Dice = () => {
         <div className="flex items-center gap-2 ">
           <button
             disabled={!!betAmount}
-            className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
-            onClick={() => setAmount(20)}
-          >
-            20
-          </button>
-
-          <button
-            disabled={!!betAmount}
-            className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
-            onClick={() => setAmount(50)}
-          >
-            50
-          </button>
-
-          <button
-            disabled={!!betAmount}
-            className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
+            className="bg-primary disabled:opacity-50 p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
             onClick={() => setAmount(100)}
           >
             100
@@ -121,7 +108,23 @@ const Dice = () => {
 
           <button
             disabled={!!betAmount}
-            className="bg-primary p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
+            className="bg-primary disabled:opacity-50 p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
+            onClick={() => setAmount(150)}
+          >
+            150
+          </button>
+
+          <button
+            disabled={!!betAmount}
+            className="bg-primary disabled:opacity-50 p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
+            onClick={() => setAmount(200)}
+          >
+            200
+          </button>
+
+          <button
+            disabled={!!betAmount}
+            className="bg-primary disabled:opacity-50 p-2 rounded-sm cursor-pointer border border-border text-white text-xs"
             onClick={() => setAmount(500)}
           >
             500
