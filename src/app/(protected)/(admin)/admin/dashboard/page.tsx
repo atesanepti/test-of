@@ -11,10 +11,8 @@ export const metadata: Metadata = {
   description:
     "Manage users, monitor activities, and oversee transactions easily with the admin dashboard. Stay in control of your Bangladesh casino and betting site.",
 };
-const Dashboard = async() => {
-  const request = fetch(
-    `${process.env.NEXT_PUBLIC_APP}/api/admin/statistics`
-  ).then((res) => res.json());
+const Dashboard = async () => {
+  const request = fetch(`api/admin/statistics`).then((res) => res.json());
   const demo = await request;
   console.log({ demo });
 
