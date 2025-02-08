@@ -30,7 +30,7 @@ const userApiSlice = apiSlice.injectEndpoints({
       { id: string; body: UserUpdateInput }
     >({
       query: ({ id, body }) => ({
-        url: `/api/admin/users/${id}`,
+        url: `api/admin/users/${id}`,
         method: "PUT",
         body: body,
       }),
