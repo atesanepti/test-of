@@ -5,7 +5,7 @@ import React, { use } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Stictics = ({ request }: { request: any }) => {
   const data: DashboardStictis = use(request);
-  console.log("data.payload",data.payload)
+  console.log("data.payload", data.payload);
   const {
     totalUsers,
     totalDespositsAmount,
