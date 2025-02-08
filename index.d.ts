@@ -19,5 +19,7 @@ declare module "next-auth" {
   }
 }
 
+
+
 declare module "*.mp3";
 declare module "*.wav";

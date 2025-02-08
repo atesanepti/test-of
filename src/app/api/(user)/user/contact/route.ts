@@ -1,7 +1,6 @@
 import { db } from "@/../prisma";
 
 export const GET = async () => {
-  console.log("DATABASE = ", db);
   try {
     const contact = await db.contact.findFirst({
       where: {},
