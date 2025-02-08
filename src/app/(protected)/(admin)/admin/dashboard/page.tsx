@@ -15,7 +15,9 @@ const Dashboard = () => {
   console.log("process.env.NEXT_PUBLIC_APP", process.env.NEXT_PUBLIC_APP);
   const request = fetch(
     `${process.env.NEXT_PUBLIC_APP}/api/admin/statistics`
-  ).then((res) => res.json());
+  ).then((res) => res.json()).catch(error)=>{
+    console.log("Dashboard error")
+  }
 
   return (
     <div>
