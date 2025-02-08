@@ -99,6 +99,7 @@ const Signup = () => {
                 <FormControl>
                   <Input
                     {...field}
+                    placeholder="Enter phone number"
                     disabled={isInputDisable}
                     autoComplete="off"
                   />

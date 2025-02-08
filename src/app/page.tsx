@@ -16,6 +16,7 @@ export default function Home() {
         <HomeHeader />
 
         <div className="container">
+          
           <FeaturesSlider />
           <SlideInfo />
           <GameList />
