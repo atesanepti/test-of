@@ -1,4 +1,4 @@
-import { db } from "../../prisma/index";
+import { db } from "@/lib/prisma";
 
 export const findUserByEmail = async (email: string) => {
   const user = await db.users.findUnique({ where: { email } });
@@ -15,7 +15,6 @@ export const findUserById = async (id: string) => {
 
   return user;
 };
-
 
 export const findUserByRef = async (ref: string) => {
   const user = await db.users.findFirst({ where: { my_ref: ref } });

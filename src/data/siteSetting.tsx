@@ -1,4 +1,4 @@
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 
 const fetchSiteInfo = async () => {
   const info = await db.siteSetting.findFirst({
