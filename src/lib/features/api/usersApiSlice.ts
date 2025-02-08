@@ -39,4 +39,5 @@ const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useFetchUsersQuery, useFetchUserQuery,useUserUpdateMutation } = userApiSlice;
+export const { useFetchUsersQuery, useFetchUserQuery, useUserUpdateMutation } =
+  userApiSlice;

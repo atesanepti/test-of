@@ -17,12 +17,18 @@ export const GET = async (req: NextRequest) => {
         where: {
           user_id: user!.id,
         },
+        orderBy : {
+          createdAt : "desc"
+        }
       });
     } else {
       logs = await db.log.findMany({
         where: {
           user_id: user!.id,
           log_type: LogType,
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       });
     }

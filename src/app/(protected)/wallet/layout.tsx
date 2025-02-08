@@ -1,12 +1,12 @@
-import TabLayout from '@/components/TabLayout'
-import React from 'react'
+import TabLayout from "@/components/TabLayout";
+import React from "react";
 
-const WalletLayout = ({children} : {children : React.ReactNode}) => {
+const WalletLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <TabLayout>
-        {children}
-    </TabLayout>
-  )
-}
+    <div className="forg-bg  overflow-x-hidden overflow-y-hidden max-h-s">
+      <TabLayout>{children}</TabLayout>
+    </div>
+  );
+};
 
-export default WalletLayout
+export default WalletLayout;

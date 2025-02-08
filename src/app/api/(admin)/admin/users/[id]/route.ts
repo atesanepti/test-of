@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { UserUpdateInput } from "@/types/interface";
 import { createLog } from "@/lib/log";
 
@@ -77,7 +77,7 @@ export const PUT = async (
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) => {
-  const {id} =  await params;
+  const { id } = await params;
   const { ban, walletTransfer } = (await req.json()) as UserUpdateInput;
   try {
     if (ban) {

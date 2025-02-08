@@ -23,11 +23,11 @@ const WalletNavigation = () => {
         Deposit
       </Link>
       <Link
-        href={"/withdrawal"}
+        href={"/withdraw"}
         className="flex flex-col items-center justify-center bg-input border border-muted/15 rounded-sm text-[10px] text-muted-foreground hover:text-white/80 w-[70px] p-2"
       >
         <TextCursorInput className="w-4 h-4" />
-        Withdrawal
+        Withdraw
       </Link>
       <Link
         href={"/games"}

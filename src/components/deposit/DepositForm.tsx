@@ -21,6 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMakeDepositeMutation } from "@/lib/features/api/depositApiSlice";
 import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
+import Loader from "../Loader";
 
 const DepositForm = ({
   gateway,
@@ -182,6 +183,8 @@ const DepositForm = ({
           </Button>
         </form>
       </Form>
+
+      {isInputDisable && <Loader />}
     </div>
   );
 };

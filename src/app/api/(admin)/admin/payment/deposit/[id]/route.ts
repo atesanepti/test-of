@@ -52,7 +52,7 @@ export const PUT = async (
         },
       });
 
-      await createLog(user!.id, {
+      await createLog(depositReq.user_id, {
         amount: depositReq!.amount!,
         title: "Deposit Successfull",
         des: "Your Deposit Request was Accepted. Check your Gaming wallet",
@@ -79,7 +79,7 @@ export const PUT = async (
         }
       }
     } else if (status === DepositsStatus.REJECTED) {
-      await createLog(user!.id, {
+      await createLog(depositReq.user_id, {
         amount: depositReq!.amount!,
         title: "Deposit Unsuccessfull",
         des: "Your Deposit Request was Rejected.",

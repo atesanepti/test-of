@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getCurrentUser } from "@/lib/getCurrentUser";
+import { Clover, CreditCard, Settings, Users } from "lucide-react";
 interface AdminNavigationProps {
   children: React.ReactNode;
 }
@@ -53,7 +54,12 @@ const AdminNavigation = async ({ children }: AdminNavigationProps) => {
         )}
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Payments</AccordionTrigger>
+            <AccordionTrigger>
+              <span className="flex items-center gap-1">
+                <CreditCard className="w-4 h-4" />
+                Payments
+              </span>
+            </AccordionTrigger>
             <AccordionContent>
               <nav className="flex flex-col gap-2">
                 <Link
@@ -63,7 +69,7 @@ const AdminNavigation = async ({ children }: AdminNavigationProps) => {
                   Deposits
                 </Link>
                 <Link
-                  href="/admin/withdraw"
+                  href="/admin/withdraws"
                   className="text-xs text-muted-foreground hover:text-white"
                 >
                   Withdraw
@@ -81,22 +87,25 @@ const AdminNavigation = async ({ children }: AdminNavigationProps) => {
 
         <Link
           href="/admin/users"
-          className="text-sm font-medium text-white hover:text-white/90 block"
+          className="text-sm font-medium text-white hover:text-white/90 mb-3 flex items-center gap-1"
         >
+          <Users className="w-4 h-4" />
           Users
         </Link>
 
         <Link
           href="/admin/site-setting"
-          className="text-sm font-medium text-white hover:text-white/90 block"
+          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
         >
+          <Settings className="w-4 h-4" />
           Site Setting
         </Link>
 
         <Link
           href="/admin/lottery"
-          className="text-sm font-medium text-white hover:text-white/90 block"
+          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
         >
+          <Clover className="w-4 h-4" />
           Lottery
         </Link>
       </SheetContent>

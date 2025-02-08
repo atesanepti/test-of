@@ -37,11 +37,12 @@ const Users = () => {
 
       {isLoading && (
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <Skeleton className="h-20" />
-            <Skeleton className="h-20" />
-            <Skeleton className="h-20" />
+          <div className="flex w-full items-center gap-2 mb-3">
+            <Skeleton className="h-20 flex-1" />
+            <Skeleton className="h-20 flex-1" />
+            <Skeleton className="h-20 flex-1" />
           </div>
+          <Skeleton className="h-8 mb-2" />
           <Skeleton className="h-8 mb-2" />
           <div className="flex flex-col gap-3 mt-5">
             <Skeleton className="h-16" />

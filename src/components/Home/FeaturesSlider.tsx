@@ -14,7 +14,6 @@ const FeaturesSlider = () => {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   return (
     <div className="my-10 ">
-      <span>Hello world</span>
       <Carousel
         plugins={[plugin.current]}
         className="w-full "

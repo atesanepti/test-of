@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const WalletPage = () => {
   return (
-    <div className="forg-bg pt-4 overflow-x-hidden">
+    <div >
       <WalletHeader />
 
       <div className="container py-2  px-2">

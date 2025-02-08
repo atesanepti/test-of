@@ -14,9 +14,7 @@ export default function Home() {
     <div className="forg-bg overflow-x-hidden">
       <TabLayout>
         <HomeHeader />
-
         <div className="container">
-          
           <FeaturesSlider />
           <SlideInfo />
           <GameList />

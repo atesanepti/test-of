@@ -22,18 +22,23 @@ import { cn } from "@/lib/utils";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { notFound } from "next/navigation";
+import DataLoader from "../DataLoade";
 
 const User = () => {
   const { id } = useParams();
-  const { data, error } = useFetchUserQuery({
+  const { data, error, isLoading } = useFetchUserQuery({
     id: Array.isArray(id) ? id[0] : id!,
   });
+
+  console.log({ data });
 
   const user = data?.payload.user;
 
   const profitPercentage = (profit: number, deposit: number) => {
+    if (profit == 0 && deposit == 0) {
+      return 0;
+    }
     const percentage = (profit / deposit) * 100;
-
     return percentage;
   };
 
@@ -63,11 +68,11 @@ const User = () => {
     }
   };
 
-  useEffect(() => {
-    if (!data || error) {
-      notFound();
-    }
-  }, [data, error]);
+  // useEffect(() => {
+  //   if (!data || error) {
+  //     notFound();
+  //   }
+  // }, [data, error]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -193,7 +198,7 @@ const User = () => {
           </div>
         </>
       )}
-
+      {isLoading && <DataLoader />}
       {updateLoading && (
         <div className="fixed top-0 left-0 w-full h-screen bg-black/15 flex justify-center items-center">
           <ClipLoader size={20} color="white" />

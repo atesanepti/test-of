@@ -18,8 +18,8 @@ const SignupPage = () => {
             formTitle="sign-in"
             formIntro="Get access your existing account?"
             formActionText="You have no account?"
-            formActionLink="Create new"
-            formActionHref="/signup"
+            formActionLink="Signin"
+            formActionHref="/signin"
           >
             <Signup />
           </Form>

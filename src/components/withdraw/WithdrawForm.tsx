@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
 import { useMakeWithdrawMutation } from "@/lib/features/api/withdrawApiSlice";
+import Loader from "../Loader";
 
 const WithdrawForm = ({
   gateway,
@@ -63,6 +64,7 @@ const WithdrawForm = ({
         if (error.data) {
           toast.error(error.data.message);
         } else {
+          console.log("ERROR", error)
           toast.error("Something went wrong Try agin");
         }
       });
@@ -117,6 +119,8 @@ const WithdrawForm = ({
           </Button>
         </form>
       </Form>
+
+      {isInputDisable && <Loader />}
     </div>
   );
 };

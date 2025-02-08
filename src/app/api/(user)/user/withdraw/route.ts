@@ -9,11 +9,19 @@ export const POST = async (req: NextRequest) => {
   const { amount, gateway_id, pay_to } = (await req.json()) as CreateWithdraw;
 
   const user = await getCurrentUser();
+  const wallet = await db.wallet.findUnique({ where: { user_id: user!.id } });
   const minWithDraw = (await fetchSiteInfo())?.minWithDraw || 0;
 
   if (amount < minWithDraw) {
     return Response.json(
       { message: `Minimum withdraw ${minWithDraw}`, success: false },
+      { status: 400 }
+    );
+  }
+
+  if (amount > wallet!.account - 200) {
+    return Response.json(
+      { message: `You cannot withdraw this amount`, success: false },
       { status: 400 }
     );
   }

@@ -1,7 +1,7 @@
 import { UserStatus } from "@/types/enum";
 import { Prisma } from "@prisma/client";
 import { NextRequest } from "next/server";
-import { db } from "@/../prisma";
+import { db } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 
 export const GET = async (req: NextRequest) => {
