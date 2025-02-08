@@ -117,7 +117,9 @@ const Contact = () => {
             )}
           />
 
-          <Button size={"sm"} className="mt-1">Save</Button>
+          <Button size={"sm"} className="mt-1">
+            Save
+          </Button>
         </form>
       </Form>
 

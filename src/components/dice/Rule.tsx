@@ -15,14 +15,14 @@ const Rule = ({ children }: { children: React.ReactNode }) => {
           <DialogTitle>How to play this game</DialogTitle>
 
           <div className=" p-2">
-            <ul className="list-disc pl-5 mt-3">
-              <li className="text-white text-sm">Select any Number</li>
-              <li className="text-white text-sm">Click on Dice Image</li>
-              <li className="text-white text-sm">
+            <ul className="list-disc pl-5 mt-3 text-left">
+              <li className="text-white text-xs">Select any Number</li>
+              <li className="text-white text-xs">Click on Dice Image</li>
+              <li className="text-white text-xs">
                 If the selected number is equal to the dice number total gets
                 updated
               </li>
-              <li className="text-white text-sm">
+              <li className="text-white text-xs">
                 If wrong -2 will be deducted
               </li>
             </ul>

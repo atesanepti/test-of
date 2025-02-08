@@ -17,34 +17,32 @@ export const metadata: Metadata = {
 
 const WalletPage = () => {
   return (
-    
-      <div className="forg-bg pt-4 overflow-x-hidden">
-        <WalletHeader />
+    <div className="forg-bg pt-4 overflow-x-hidden">
+      <WalletHeader />
 
-        <div className="container py-2  px-2">
-          <div>
-            <h3 className="text-white text-lg font-semibold  relative  flex  justify-center items-center">
-              <Image
-                src={line_left}
-                alt="line"
-                className="absolute top-1/2 -translate-x-1/2 left-16 md:left-20 w-32 md:w-40"
-              />
-              My Wallet
-              <Image
-                src={line_right}
-                width={100}
-                height={100}
-                alt="line"
-                className="absolute top-1/2 -translate-x-1/2  -right-16 md:-right-20  w-32 md:w-40"
-              />
-            </h3>
-          </div>
-
-          <Accounts />
-          <WalletNavigation />
+      <div className="container py-2  px-2">
+        <div>
+          <h3 className="text-white text-lg font-semibold  relative  flex  justify-center items-center">
+            <Image
+              src={line_left}
+              alt="line"
+              className="absolute top-1/2 -translate-x-1/2 left-16 md:left-20 w-32 md:w-40"
+            />
+            My Wallet
+            <Image
+              src={line_right}
+              width={100}
+              height={100}
+              alt="line"
+              className="absolute top-1/2 -translate-x-1/2  -right-16 md:-right-20  w-32 md:w-40"
+            />
+          </h3>
         </div>
+
+        <Accounts />
+        <WalletNavigation />
       </div>
-    
+    </div>
   );
 };
 

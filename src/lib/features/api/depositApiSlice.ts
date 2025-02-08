@@ -7,7 +7,6 @@ import {
 import { apiSlice } from "./apiSlice";
 import { Prisma } from "@prisma/client";
 
-
 type FetchDepositsPayload = {
   payload: {
     totalFound: number;
@@ -29,6 +28,7 @@ const depositApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["log", "log-notic"],
     }),
 
     fetchAllDeposits: builder.query<FetchDeposits, FetchDataInput>({

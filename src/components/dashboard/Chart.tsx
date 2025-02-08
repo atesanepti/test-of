@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/chart";
 import { LastSixMonthsStats } from "@/types/interface";
 import { useFetchPaymentDataQuery } from "@/lib/features/api/paymentApiSlice";
-
+import { MoonLoader } from "react-spinners";
 const chartConfig = {
   desktop: {
     label: "Desposits",
@@ -43,10 +43,9 @@ const Chart = () => {
       mobile: payload[key as keyof LastSixMonthsStats].withdrawals,
     });
   }
-  console.log({ chartData });
   return (
     <>
-      {payload && !isLoading && (
+      {!isLoading && payload && (
         <Card>
           <CardHeader>
             <CardTitle className="text-white">Withdraws x Desposits</CardTitle>
@@ -106,6 +105,12 @@ const Chart = () => {
             </div>
           </CardFooter>
         </Card>
+      )}
+
+      {isLoading && (
+        <div className="w-full h-[450px] flex justify-center items-center rounded-lg">
+          <MoonLoader size={20} color="white" />
+        </div>
       )}
     </>
   );

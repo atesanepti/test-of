@@ -1,12 +1,9 @@
 import { format } from "@/lib/currency";
 import { DashboardStictis } from "@/types/interface";
-import React, { use } from "react";
+import React from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const SummaryStatistics = ({ request }: { request: any }) => {
-  const data: DashboardStictis = use(request);
-
-  const { netRevenue, avgDespositsAmount, avgWithdrawAmount } = data.payload;
+const SummaryStatistics = ({ request }: { request: DashboardStictis }) => {
+  const { netRevenue, avgDespositsAmount, avgWithdrawAmount } = request.payload;
 
   return (
     <div className="bg-primary-foreground p-3 rounded-lg">

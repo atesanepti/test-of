@@ -83,18 +83,18 @@ const PaymentMethods = ({
       )}
 
       {isLoading && (
-        <div className="w-full">
+        <div className="w-full mt-2">
           <Skeleton className="h-4 w-[200px]" />
           <div className="flex w-full gap-2 mt-2">
-            <Skeleton className="h-16 flex-1" />
-            <Skeleton className="h-16  flex-1" />
-            <Skeleton className="h-16  flex-1" />
+            <Skeleton className="h-20 flex-1" />
+            <Skeleton className="h-20  flex-1" />
+            <Skeleton className="h-20  flex-1" />
           </div>
         </div>
       )}
 
       {gateway && gateway.length === 0 && (
-        <span className="text-[10px] text-muted-foreground">
+        <span className="text-xs mt-2 text-muted-foreground">
           You have no Payment method added{" "}
           <span className="text-brand">please add Payment method</span>
         </span>

@@ -2,29 +2,6 @@ import { db } from "@/../prisma";
 import { ContactInfoCreate } from "@/types/interface";
 import { NextRequest } from "next/server";
 
-export const GET = async () => {
-  try {
-    const contact = await db.contact.findFirst({
-      where: {},
-    });
-
-    return Response.json(
-      {
-        message: "Fetched",
-        success: true,
-        payload: contact,
-      },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.log("ERROR X", error)
-    return Response.json(
-      { success: false, message: "Unknown Error Try agin" },
-      { status: 500 }
-    );
-  }
-};
-
 export const PUT = async (req: NextRequest) => {
   try {
     const newContact = (await req.json()) as ContactInfoCreate;

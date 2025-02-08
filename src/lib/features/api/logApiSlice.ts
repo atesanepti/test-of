@@ -20,6 +20,7 @@ export const logApiSlice = apiSlice.injectEndpoints({
         url: `api/user/log?log-type=${logType ? logType : "ALL"}`,
         method: "GET",
       }),
+      providesTags: ["log"],
     }),
 
     fetchUnSeenLogsCount: builder.query<LogUnseenCoundReturn, void>({
@@ -27,6 +28,7 @@ export const logApiSlice = apiSlice.injectEndpoints({
         url: `api/user/log/new`,
         method: "GET",
       }),
+      providesTags: ["log-notic"],
     }),
 
     logSeen: builder.mutation<void, void>({
@@ -34,9 +36,13 @@ export const logApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         url: "api/user/log",
       }),
+      invalidatesTags: ["log-notic"],
     }),
-
   }),
 });
 
-export const { useFetchLogsQuery, useFetchUnSeenLogsCountQuery,useLogSeenMutation } = logApiSlice;
+export const {
+  useFetchLogsQuery,
+  useFetchUnSeenLogsCountQuery,
+  useLogSeenMutation,
+} = logApiSlice;

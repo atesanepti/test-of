@@ -1,17 +1,14 @@
 import { format } from "@/lib/currency";
 import { DashboardStictis } from "@/types/interface";
-import React, { use } from "react";
+import React from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Stictics = ({ request }: { request: any }) => {
-  const data: DashboardStictis = use(request);
-  console.log("data.payload", data.payload);
+const Stictics = ({ request }: { request: DashboardStictis }) => {
   const {
     totalUsers,
     totalDespositsAmount,
     currentDespositAmount,
     totalWithdrawAmount,
-  } = data.payload;
+  } = request.payload;
 
   return (
     <div className="grid grid-cols-2 gap-3">

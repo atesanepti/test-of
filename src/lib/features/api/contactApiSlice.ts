@@ -9,7 +9,7 @@ const contactApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     fetchContactInfo: builder.query<ContactInfoReturn, void>({
       query: () => ({
-        url: "api/admin/setting/contact",
+        url: "api/user/contact",
         method: "GET",
       }),
       providesTags: ["contact"],
@@ -26,5 +26,5 @@ const contactApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-
-export const {useFetchContactInfoQuery, useUpdateContactInfoMutation} = contactApiSlice;
+export const { useFetchContactInfoQuery, useUpdateContactInfoMutation } =
+  contactApiSlice;

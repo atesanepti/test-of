@@ -41,7 +41,7 @@ const Dice = () => {
     }
 
     setError("");
-    const randomNumber = random(1, 7);
+    const randomNumber = random(1, 6);
     setCurrentDice(randomNumber);
 
     if (selectedNumber === randomNumber) {

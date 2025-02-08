@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
+import Ludo from "./icons/Ludo";
 
 interface RoleDiceProps {
   currentDice: number;
@@ -19,15 +19,9 @@ const RoleDice: React.FC<RoleDiceProps> = ({ currentDice, rollDice }) => {
         }}
         className="cursor-pointer"
       >
-        <Image
-          src={`/assets/dice/side${currentDice}.png`}
-          alt="dice side"
-          width={100}
-          height={100}
-          className="w-30"
-        />
+        <Ludo side={currentDice} />
       </div>
-      <p>Click on the dice to roll</p>
+      <p className="text-white text-sm ">Click on the dice to roll</p>
     </div>
   );
 };
