@@ -62,7 +62,8 @@ export const GET = async () => {
       },
       { status: 200 }
     );
-  } catch {
+  } catch (error) {
+    console.log("Sta Error Of ser ", error)
     return Response.json(
       { success: false, message: "Unknown Error Try agin" },
       { status: 500 }
