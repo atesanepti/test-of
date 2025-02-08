@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 const Dashboard = () => {
   console.log("process.env.NEXT_PUBLIC_APP", process.env.NEXT_PUBLIC_APP);
-  const request = fetch(`${process.env.NEXT_PUBLIC_APP}/api/admin/statistics`)
+  const request = fetch(`${process.env.NEXTAUTH_URL}/api/admin/statistics`)
     .then((res) => res.json())
     .catch((error) => {
       console.log("Dashboard error", error);
