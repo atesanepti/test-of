@@ -295,7 +295,7 @@ export default function CrashGame() {
                 placeholder="Enter bet amount"
                 value={`${betAmount}`}
                 onChange={(e) =>
-                  setBetAmount(e.target.value ? parseFloat(e.target.value) : 20)
+                  setBetAmount(e.target.value ? parseFloat(e.target.value) : 100)
                 }
               />
               <div className="flex gap-2 items-center mt-2">

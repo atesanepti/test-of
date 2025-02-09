@@ -50,7 +50,7 @@ export default auth(async (req) => {
     nextUrl.pathname.startsWith(ADMIN_ROUTE_PREFIX) &&
     userRole === "USER"
   ) {
-    return Response.redirect(new URL(`/`, nextUrl));
+    return Response.redirect(new URL(`/not-found`, nextUrl));
   }
 
   if (
@@ -58,7 +58,7 @@ export default auth(async (req) => {
     ADMIN_ROUTE_ONLY.includes(nextUrl.pathname) &&
     userRole !== "ADMIN"
   ) {
-    return Response.redirect(new URL(`/`, nextUrl));
+    return Response.redirect(new URL(`/not-found`, nextUrl));
   }
 });
 
@@ -68,7 +68,6 @@ export const config = {
     "/(api|trpc)(.*)",
   ],
 };
-
 
 // import NextAuth from "next-auth";
 // import { getToken } from "next-auth/jwt";

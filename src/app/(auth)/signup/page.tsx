@@ -15,7 +15,7 @@ const SignupPage = () => {
       <div className="cantainer">
         <div className="cantainer">
           <Form
-            formTitle="sign-in"
+            formTitle="sign-up"
             formIntro="Get access your existing account?"
             formActionText="You have no account?"
             formActionLink="Signin"

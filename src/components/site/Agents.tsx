@@ -23,7 +23,7 @@ import { Skeleton } from "../ui/skeleton";
 const Agents = () => {
   const { data, isLoading } = useFetchAgentsQuery();
   const agents = data?.payload;
-
+  
   const [agentDeleteApi, { isLoading: deleteLoading }] =
     useDeleteAgentMutation();
 
@@ -100,10 +100,10 @@ const Agents = () => {
       )}
 
       {isLoading && (
-        <div className="flex flex-col gap-3">
-          <Skeleton className="h-12 bg-primary" />
-          <Skeleton className="h-12 bg-primary" />
-          <Skeleton className="h-12 bg-primary" />
+        <div className="flex flex-col gap-2">
+          <Skeleton className="h-10 bg-primary" />
+          <Skeleton className="h-10 bg-primary" />
+          <Skeleton className="h-10 bg-primary" />
         </div>
       )}
 

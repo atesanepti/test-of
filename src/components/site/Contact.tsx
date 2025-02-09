@@ -79,7 +79,11 @@ const Contact = () => {
               <FormItem>
                 <FormLabel>Facebook (URL)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Facebook.." {...field} />
+                  <Input
+                    placeholder="Facebook.."
+                    {...field}
+                    className="!bg-secondary-foreground !border-none"
+                  />
                 </FormControl>
                 <FormDescription />
                 <FormMessage />
@@ -94,7 +98,11 @@ const Contact = () => {
               <FormItem>
                 <FormLabel>Whatsapp (Phone)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Whatsapp.." {...field} />
+                  <Input
+                    className="!bg-secondary-foreground !border-none"
+                    placeholder="Whatsapp.."
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription />
                 <FormMessage />
@@ -109,7 +117,11 @@ const Contact = () => {
               <FormItem>
                 <FormLabel>Telegram (URL)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Telegram.." {...field} />
+                  <Input
+                    className="!bg-secondary-foreground !border-none"
+                    placeholder="Telegram.."
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription />
                 <FormMessage />

@@ -6,6 +6,7 @@ import { Copy } from "lucide-react";
 import React from "react";
 import toast from "react-hot-toast";
 import moment from "moment";
+import { format } from "@/lib/currency";
 
 const DepositReq = ({
   deposit,
@@ -102,7 +103,7 @@ const DepositReq = ({
 
       <div className="flex flex-col">
         <span className="text-sm font-semibold text-white">
-          {deposit.amount}
+          {format(deposit.amount)}
         </span>
         <span className="text-muted text-[10px] flex items-center gap-1">
           {deposit.transaction_id}{" "}

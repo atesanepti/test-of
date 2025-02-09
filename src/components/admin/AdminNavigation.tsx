@@ -14,7 +14,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { Clover, CreditCard, Settings, Users } from "lucide-react";
+import {
+  Clover,
+  CreditCard,
+  LayoutDashboard,
+  Settings,
+  Users,
+  AppWindowMac,
+} from "lucide-react";
+import { UserRole } from "@prisma/client";
 interface AdminNavigationProps {
   children: React.ReactNode;
 }
@@ -43,15 +51,30 @@ const AdminNavigation = async ({ children }: AdminNavigationProps) => {
         {role == "AGENT" && (
           <SheetTitle className="text-white text-sm flex items-center" asChild>
             <span>
-              <span className="px-2 py-1 bg-[#8B5DFF] text-white text-sm rounded-sm rounded-s-sm font-light">
+              <span className="px-2 py-1 bg-[#5B913B] text-white text-sm  rounded-s-sm font-light">
                 AGENT
               </span>
-              <span className="px-2 py-1 border border-[#9ABF80] text-[#9ABF80] text-sm rounded-e-sm font-ligh">
+              <span className="px-2 py-1 border border-[#5B913B] text-[#5B913B] text-sm rounded-e-sm font-ligh">
                 Navigation
               </span>
             </span>
           </SheetTitle>
         )}
+
+        <Link
+          href="/admin"
+          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
+        >
+          <AppWindowMac className="w-4 h-5" />
+          App
+        </Link>
+        <Link
+          href="/admin/dashboard"
+          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
+        >
+          <LayoutDashboard className="w-4 h-4" />
+          Dashboard
+        </Link>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>
@@ -74,32 +97,38 @@ const AdminNavigation = async ({ children }: AdminNavigationProps) => {
                 >
                   Withdraw
                 </Link>
-                <Link
-                  href="/admin/gateway"
-                  className="text-xs text-muted-foreground hover:text-white"
-                >
-                  Gateway
-                </Link>
+                {user?.role == UserRole.ADMIN && (
+                  <Link
+                    href="/admin/gateway"
+                    className="text-xs text-muted-foreground hover:text-white"
+                  >
+                    Gateway
+                  </Link>
+                )}
               </nav>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
 
-        <Link
-          href="/admin/users"
-          className="text-sm font-medium text-white hover:text-white/90 mb-3 flex items-center gap-1"
-        >
-          <Users className="w-4 h-4" />
-          Users
-        </Link>
+        {user?.role == UserRole.ADMIN && (
+          <Link
+            href="/admin/users"
+            className="text-sm font-medium text-white hover:text-white/90 mb-3 flex items-center gap-1"
+          >
+            <Users className="w-4 h-4" />
+            Users
+          </Link>
+        )}
 
-        <Link
-          href="/admin/site-setting"
-          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
-        >
-          <Settings className="w-4 h-4" />
-          Site Setting
-        </Link>
+        {user?.role == UserRole.ADMIN && (
+          <Link
+            href="/admin/site-setting"
+            className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
+          >
+            <Settings className="w-4 h-4" />
+            Site Setting
+          </Link>
+        )}
 
         <Link
           href="/admin/lottery"

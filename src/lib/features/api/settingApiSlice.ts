@@ -47,7 +47,7 @@ const settingApiSlice = apiSlice.injectEndpoints({
         url: `api/admin/permission/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["agents"],
+      invalidatesTags: ["agents", "usersFAgents"],
     }),
 
     fetchUsers: builder.query<UsersFAgetntFetchReturn, { search: string }>({
@@ -55,7 +55,7 @@ const settingApiSlice = apiSlice.injectEndpoints({
         url: `api/admin/permission/users?search=${search}`,
         method: "GET",
       }),
-      providesTags: ["usersFAgents"],
+      providesTags: ["usersFAgents", "agents"],
     }),
   }),
 });

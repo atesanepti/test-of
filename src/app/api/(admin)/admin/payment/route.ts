@@ -2,80 +2,74 @@ import { db } from "@/lib/prisma";
 import { subMonths, startOfMonth, endOfMonth, format } from "date-fns";
 
 export const GET = async () => {
-  
   try {
-    const now = new Date();
-    const startDate = startOfMonth(subMonths(now, 5)); // 6 months ago (including current month)
-    const endDate = endOfMonth(now); // End of the current month
+    const currentDate = new Date();
 
-    // Fetch deposits data
-    const depositsData = await db.deposits.groupBy({
-      by: ["createdAt"],
-      where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-        status: "ACCEPTED",
-      },
-      _count: {
-        _all: true, // Count occurrences per month
-      },
-      orderBy: {
-        createdAt: "asc",
-      },
-    });
-
-    // Fetch withdrawals data
-    const withdrawalsData = await db.withdraws.groupBy({
-      by: ["createdAt"],
-      where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-        status: "ACCEPTED",
-      },
-      _count: {
-        _all: true, // Count occurrences per month
-      },
-      orderBy: {
-        createdAt: "asc",
-      },
-    });
-
-    // Generate an array of last 6 months
-    const months = Array.from({ length: 6 }).map((_, i) => {
-      return format(subMonths(now, 5 - i), "MMMM"); // Example: "September", "October", etc.
-    });
-
-    // Convert fetched data into month-wise objects
-    const depositsMonthlyStats = depositsData.reduce((acc, item) => {
-      const month = format(new Date(item.createdAt), "MMMM");
-      acc[month] = item._count._all;
-      return acc;
-    }, {} as Record<string, number>);
-
-    const withdrawMonthlyStats = withdrawalsData.reduce((acc, item) => {
-      const month = format(new Date(item.createdAt), "MMMM");
-      acc[month] = item._count._all;
-      return acc;
-    }, {} as Record<string, number>);
-
-    // Merge both datasets, ensuring every month is present
-    const allMonthlyStats = months.reduce((acc, month) => {
-      acc[month] = {
-        deposits: depositsMonthlyStats[month] || 0,
-        withdrawals: withdrawMonthlyStats[month] || 0,
+    // Generate last 6 months range
+    const lastSixMonths = Array.from({ length: 6 }, (_, i) => {
+      const date = subMonths(currentDate, 5 - i);
+      return {
+        month: format(date, "MMMM"), // "January", "February", etc.
+        start: startOfMonth(date),
+        end: endOfMonth(date),
       };
+    });
+
+    // Fetch withdrawals for the last 6 months
+    const withdrawals = await db.withdraws.findMany({
+      where: {
+        createdAt: {
+          gte: lastSixMonths[0].start, // Start of the oldest month
+        },
+        status: "ACCEPTED",
+      },
+      select: {
+        amount: true,
+        createdAt: true,
+      },
+    });
+
+    const deposits = await db.deposits.findMany({
+      where: {
+        createdAt: {
+          gte: lastSixMonths[0].start,
+        },
+        status: "ACCEPTED",
+      },
+      select: {
+        amount: true,
+        createdAt: true,
+      },
+    });
+
+    const result = lastSixMonths.reduce<
+      Record<string, { deposits: number; withdrawals: number }>
+    >((acc, { month }) => {
+      acc[month] = { deposits: 0, withdrawals: 0 };
       return acc;
-    }, {} as Record<string, { deposits: number; withdrawals: number }>);
+    }, {});
+
+    // Group withdrawals by month
+    withdrawals.forEach(({ amount, createdAt }) => {
+      const monthName = format(createdAt, "MMMM");
+      if (result[monthName]) {
+        result[monthName].withdrawals += amount;
+      }
+    });
+    deposits.forEach(({ amount, createdAt }) => {
+      const monthName = format(createdAt, "MMMM");
+      if (result[monthName]) {
+        result[monthName].deposits += amount;
+      }
+    });
+
+    console.log({result})
 
     return Response.json(
       {
         success: true,
         message: "Fetched",
-        payload: allMonthlyStats,
+        payload: result,
       },
       { status: 200 }
     );

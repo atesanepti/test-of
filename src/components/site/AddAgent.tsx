@@ -16,13 +16,14 @@ import { Button } from "../ui/button";
 import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
 import Loader from "../Loader";
+import { Skeleton } from "../ui/skeleton";
 interface AddAgentProps {
   children: React.ReactNode;
 }
 const AddAgent = ({ children }: AddAgentProps) => {
   const [search, setSearch] = useState("");
 
-  const { data } = useFetchUsersQuery({ search });
+  const { data, isFetching, isLoading } = useFetchUsersQuery({ search });
   const users = data?.payload;
 
   const [makeAgentApi, { isLoading: makeAgentLoading }] =
@@ -67,7 +68,6 @@ const AddAgent = ({ children }: AddAgentProps) => {
                     key={i}
                   >
                     <span className="text-xs text-white flex-1">{u.email}</span>
-                    <span className="text-xs text-white flex-1">{u.phone}</span>
                     {u.role == "USER" ? (
                       <Button
                         onClick={() => handleMakeAgent(u.id)}
@@ -83,6 +83,19 @@ const AddAgent = ({ children }: AddAgentProps) => {
                     )}
                   </div>
                 ))}
+              </div>
+            )}
+
+            {users && users.length == 0 && !isFetching && !isLoading && (
+              <span className="text-xs text-muted-foreground block text-center py-4">
+                No User found
+              </span>
+            )}
+
+            {isFetching && (
+              <div className="flex flex-col gap-2 w-full">
+                <Skeleton className="h-8 w-full" />
+                <Skeleton className="h-8 w-full" />
               </div>
             )}
           </div>

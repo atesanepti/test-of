@@ -74,96 +74,94 @@ const SettingForm = () => {
 
   return (
     <div className="bg-primary-foreground shadow-md p-4 rounded-md md:p-5">
-      {data && (
-        <>
-          <h4 className="text-base text-white font-semibold mb-3">
-            Bonus Information
-          </h4>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleUpdate)}>
-              <FormField
-                control={form.control}
-                name="referBonus"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Refer Bonus</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="!bg-secondary-foreground !border-none"
-                        {...field}
-                        placeholder="Enter Amount"
-                        type="number"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+      <>
+        <h4 className="text-base text-white font-semibold mb-3">
+          Bonus Information
+        </h4>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleUpdate)}>
+            <FormField
+              control={form.control}
+              name="referBonus"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Refer Bonus</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="!bg-secondary-foreground !border-none"
+                      {...field}
+                      placeholder="Enter Amount"
+                      type="number"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name="depositBonusPercent"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Deposit Bonus Percentage</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="!bg-secondary-foreground !border-none"
-                        {...field}
-                        placeholder="Enter Percentage"
-                        type="number"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name="depositBonusPercent"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Deposit Bonus Percentage</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="!bg-secondary-foreground !border-none"
+                      {...field}
+                      placeholder="Enter Percentage"
+                      type="number"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name="minDeposit"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Minimun Deposit</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="!bg-secondary-foreground !border-none"
-                        {...field}
-                        placeholder="Enter Amount"
-                        type="number"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name="minDeposit"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Minimun Deposit</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="!bg-secondary-foreground !border-none"
+                      {...field}
+                      placeholder="Enter Amount"
+                      type="number"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name="minWithdraw"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Minimun Withdraw</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="!bg-secondary-foreground !border-none"
-                        {...field}
-                        placeholder="Enter Amount"
-                        type="number"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name="minWithdraw"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Minimun Withdraw</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="!bg-secondary-foreground !border-none"
+                      {...field}
+                      placeholder="Enter Amount"
+                      type="number"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <Button size={"sm"} className="mt-3">
-                Change
-              </Button>
-            </form>
-          </Form>
-        </>
-      )}
+            <Button size={"sm"} className="mt-3">
+              Change
+            </Button>
+          </form>
+        </Form>
+      </>
 
       {updateLoading && <Loader />}
     </div>

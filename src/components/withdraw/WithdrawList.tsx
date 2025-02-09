@@ -11,7 +11,7 @@ const WithdrawList = () => {
     (state) => state
   );
 
-  const { data, isLoading } = useFetchAllWithdrawQuery({
+  const { data, isLoading, isFetching } = useFetchAllWithdrawQuery({
     page,
     search,
     date,
@@ -27,10 +27,10 @@ const WithdrawList = () => {
 
   return (
     <div>
-      {payload && (
+      {payload && !isFetching && !isLoading && (
         <div>
-          {payload.withdraws.map((d) => (
-            <WithdrawReq key={d.id} deposit={d} />
+          {payload.withdraws.map((w) => (
+            <WithdrawReq key={w.id} withdraw={w} />
           ))}
         </div>
       )}
@@ -49,15 +49,16 @@ const WithdrawList = () => {
           />
         )}
 
-      {isLoading && (
-        <div className="flex flex-col gap-3">
-          <Skeleton className="h-12" />
-          <Skeleton className="h-12" />
-          <Skeleton className="h-12" />
-          <Skeleton className="h-12" />
-          <Skeleton className="h-12" />
-        </div>
-      )}
+      {(isLoading ||
+        isFetching) && 
+          <div className="flex flex-col gap-3">
+            <Skeleton className="h-12" />
+            <Skeleton className="h-12" />
+            <Skeleton className="h-12" />
+            <Skeleton className="h-12" />
+            <Skeleton className="h-12" />
+          </div>
+        }
     </div>
   );
 };

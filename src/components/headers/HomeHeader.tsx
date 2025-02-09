@@ -67,7 +67,7 @@ const HomeHeaderAgent = () => {
       <div className="flex gap-2 items-center">
         <Link
           href="/admin/dashboard"
-          className=" px-2 py-1 cursor-pointer rounded-lg text-white bg-[#9ABF80] text-xs"
+          className=" px-2 py-1 cursor-pointer rounded-lg text-white bg-[#5B913B] text-xs"
         >
           Agent
         </Link>

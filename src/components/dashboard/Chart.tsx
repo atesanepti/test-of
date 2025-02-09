@@ -32,7 +32,7 @@ const chartConfig = {
 const Chart = () => {
   const { data: payment, isLoading } = useFetchPaymentDataQuery();
   const payload = payment?.payload;
-
+  console.log({ payment });
   const chartData: Array<{ month: string; desktop: number; mobile: number }> =
     [];
 
@@ -43,6 +43,7 @@ const Chart = () => {
       mobile: payload[key as keyof LastSixMonthsStats].withdrawals,
     });
   }
+  
   return (
     <>
       {!isLoading && payload && (
