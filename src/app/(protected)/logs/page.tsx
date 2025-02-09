@@ -1,19 +1,15 @@
+"use client";
 import PageHeader from "@/components/headers/PageHeader";
 import Historis from "@/components/log/Historis";
-import { Metadata } from "next";
+import { useTranslation } from "@/lib/store";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Logs | CasinoCity24",
-  description:
-    "View your transaction and game history. Keep track of your wins, losses, and deposits at Bangladesh’s leading casino and betting site.",
-};
-
 const LogPage = () => {
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="py-4 px-2">
       <div className="container">
-        <PageHeader title="Logs" />
+        <PageHeader title={lan == "BN" ? "লগ" : "Logs"} />
         <Historis />
       </div>
     </div>

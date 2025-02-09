@@ -1,14 +1,17 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import lottery from "@/../public/assets/lottery/lottery-banner.png";
 
 import Title from "./Title";
 import LotteryPrizes from "../Lottery/LotteryPrizes";
+import { useTranslation } from "@/lib/store";
 
 const LuckyDraw = () => {
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="my-10">
-      <Title title="Lottery" />
+      <Title title={lan == "BN" ? "লটারি" : "Lottery"} />
 
       <Image src={lottery} alt="lucky draw" className="w-full h-auto" />
 

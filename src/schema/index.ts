@@ -22,8 +22,12 @@ export const depositSchema = zod.object({
   amount: zod.string().min(1, "Amount is required"),
   reciver: zod.string().min(1, "Reciver number is required"),
   sender: zod.string().min(1, "Sender number is required"),
-  transictionId: zod.string().min(1, "Transiction Id number is required"),
-  method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
+  transictionId: zod
+    .string()
+    .min(10, "Invalid Transiction Id")
+    .max(10, "Invalid Transiction Id")
+    .regex(/^[A-Za-z0-9]{10,20}$/, "Invalid Transiction Id"),
+    method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
     message: "Unknown payment method",
   }),
   getwayId: zod.string(),
@@ -61,7 +65,6 @@ export const siteSettingSchema = zod.object({
   minDeposit: zod.string().min(1, "Minimum Deposit is required"),
   minWithdraw: zod.string().min(1, "Minimum Withdraw is required"),
 });
-
 
 export const contactSchema = zod.object({
   whatsapp: zod.optional(zod.string()),

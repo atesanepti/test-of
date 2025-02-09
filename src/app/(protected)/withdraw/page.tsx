@@ -6,10 +6,11 @@ import { Prisma } from "@prisma/client";
 import PageHeader from "@/components/headers/PageHeader";
 import WithdrawRules from "@/components/withdraw/WithdrawRules";
 import WithdrawForm from "@/components/withdraw/WithdrawForm";
+import { useTranslation } from "@/lib/store";
 
 const WithdrawPage = () => {
   const [gateway, setGateway] = useState<Prisma.gatewayGetPayload<object>>();
-
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="">
       <div className="container px-3">
@@ -23,9 +24,11 @@ const WithdrawPage = () => {
           <Tabs defaultValue="withdraw" className="mt-10">
             <TabsList>
               <TabsTrigger value="withdraw" className="">
-                Withdraw
+                {lan == "BN" ? "উইথড্রো" : "Withdraw"}
               </TabsTrigger>
-              <TabsTrigger value="rules">Rules</TabsTrigger>
+              <TabsTrigger value="rules">
+                {lan == "BN" ? "রুলস" : "Rules"}
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="withdraw">

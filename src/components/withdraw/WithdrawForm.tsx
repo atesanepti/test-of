@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
 import { useMakeWithdrawMutation } from "@/lib/features/api/withdrawApiSlice";
 import Loader from "../Loader";
+import { useTranslation } from "@/lib/store";
 
 const WithdrawForm = ({
   gateway,
@@ -35,6 +36,8 @@ const WithdrawForm = ({
     },
     resolver: zodResolver(withdrawSchema),
   });
+
+  const lan = useTranslation((state) => state.lan);
 
   useEffect(() => {
     if (gateway) {
@@ -64,7 +67,6 @@ const WithdrawForm = ({
         if (error.data) {
           toast.error(error.data.message);
         } else {
-          console.log("ERROR", error)
           toast.error("Something went wrong Try agin");
         }
       });
@@ -81,11 +83,13 @@ const WithdrawForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Amount</FormLabel>
+                <FormLabel>{lan == "BN" ? "পরিমাণ" : "Amount"}</FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
-                    placeholder="Min-500 BDT"
+                    placeholder={
+                      lan == "BN" ? "ন্যূনতম-৫০০ BDT" : "Min-500 BDT"
+                    }
                     type="number"
                     {...field}
                   />
@@ -100,11 +104,17 @@ const WithdrawForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Enter your Wallet Number</FormLabel>
+                <FormLabel>
+                  {lan == "BN"
+                    ? "আপনার ওয়ালেট নম্বর প্রবেশ করুন"
+                    : "Enter your Wallet Number"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
-                    placeholder="Wallet number"
+                    placeholder={
+                      lan == "BN" ? "ওয়ালেট নম্বর" : "Wallet number"
+                    }
                     type="number"
                     {...field}
                   />
@@ -115,7 +125,7 @@ const WithdrawForm = ({
           />
 
           <Button className="mt-3" size={"sm"} disabled={isInputDisable}>
-            Make Withdraw
+            {lan == "BN" ? "উত্তোলন করুন" : "Make Withdraw"}
           </Button>
         </form>
       </Form>

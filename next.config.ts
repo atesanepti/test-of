@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
     defaultLocale: "en",
     localeDetection: false, // Prevents automatic locale detection
   },
+  images: {
+    domains: ["github.com"],
+  },
 };
 
 export default nextConfig;

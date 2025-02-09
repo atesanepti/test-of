@@ -10,6 +10,7 @@ import { useGetPaymentGatewayQuery } from "@/lib/features/api/gatewayApiSlice";
 import { cn } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
+import { useTranslation } from "@/lib/store";
 
 const PaymentMethods = ({
   onMethodSelect,
@@ -19,6 +20,8 @@ const PaymentMethods = ({
   const { data, isLoading } = useGetPaymentGatewayQuery();
   const gateway = data?.payload;
   const [selected, setSelected] = useState<Prisma.gatewayGetPayload<object>>();
+
+  const lan = useTranslation((state) => state.lan);
 
   const handleClick = (gateway: Prisma.gatewayGetPayload<object>) => {
     setSelected(gateway);
@@ -41,7 +44,9 @@ const PaymentMethods = ({
       {gateway && gateway.length > 0 && (
         <div>
           <h4 className="text-white text-sm font-medium mb-2">
-            *Select Payment Methods
+            {lan == "BN"
+              ? "পেমেন্ট পদ্ধতি নির্বাচন করুন"
+              : "*Select Payment Methods"}
           </h4>
           <div className="flex gap-2 items-center">
             {gateway?.map((g, i) => (
@@ -95,8 +100,14 @@ const PaymentMethods = ({
 
       {gateway && gateway.length === 0 && (
         <span className="text-xs mt-2 text-muted-foreground">
-          You have no Payment method added{" "}
-          <span className="text-brand">please add Payment method</span>
+          {lan == "BN"
+            ? "আপনার কোনো পেমেন্ট পদ্ধতি যোগ করা হয়নি"
+            : "You have no Payment method added"}
+          <span className="text-brand">
+            {lan == "BN"
+              ? "অনুগ্রহ করে পেমেন্ট পদ্ধতি যোগ করুন"
+              : "please add Payment method"}
+          </span>
         </span>
       )}
     </div>

@@ -10,12 +10,11 @@ import DepositRules from "@/components/deposit/DepositRules";
 import PaymentMethods from "@/components/getway/PaymentMethods";
 import { Prisma } from "@prisma/client";
 import PageHeader from "@/components/headers/PageHeader";
-
-
+import { useTranslation } from "@/lib/store";
 
 const DepositPage = () => {
   const [gateway, setGateway] = useState<Prisma.gatewayGetPayload<object>>();
-
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="">
       <div className="container px-3 ">
@@ -30,8 +29,16 @@ const DepositPage = () => {
               placeholder="blur"
             />
           </div>
-          <h3 className="text-lg font-medium text-white mb-1">Deposit</h3>
-          <InfoMessage message="Note : If You don't get Deposit at time please contact our Team with your deposit info." />
+          <h3 className="text-lg font-medium text-white mb-1">
+            {lan == "BN" ? "ডিপোজিট" : "Deposit"}
+          </h3>
+          <InfoMessage
+            message={
+              lan == "BN"
+                ? "দ্রষ্টব্য: যদি আপনি সময়মতো ডিপোজিট না পান, তবে অনুগ্রহ করে আপনার ডিপোজিট তথ্য সহ আমাদের টিমের সাথে যোগাযোগ করুন।"
+                : "Note : If You don't get Deposit at time please contact our Team with your deposit info."
+            }
+          />
         </div>
 
         <div className="mt-2">
@@ -42,9 +49,11 @@ const DepositPage = () => {
           <Tabs defaultValue="deposit" className="mt-10">
             <TabsList>
               <TabsTrigger value="deposit" className="">
-                Deposit
+                {lan == "BN" ? "ডিপোজিট" : "Deposit"}
               </TabsTrigger>
-              <TabsTrigger value="rules">Rules</TabsTrigger>
+              <TabsTrigger value="rules">
+                {lan == "BN" ? "রুলস" : "Rules"}
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="deposit">

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import multiplier from "@/../public/assets/games/multiplier.webp";
@@ -6,8 +7,10 @@ import wheel from "@/../public/assets/games/wheel.jpg";
 import toss from "@/../public/assets/games/toss.jpg";
 import dice from "@/../public/assets/games/dice.jpg";
 import Link from "next/link";
+import { useTranslation } from "@/lib/store";
 
 const CasinoGames = () => {
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="grid grid-cols-2 gap-5">
       <Link href="/game/multiplier">
@@ -20,7 +23,9 @@ const CasinoGames = () => {
             alt="Multiplier"
             placeholder="blur"
           />
-          <span className="mt-2 text-xs text-white">Multiplier</span>
+          <span className="mt-2 text-xs text-white">
+            {lan == "BN" ? "মাল্টিপ্লায়ার" : "Multiplier"}
+          </span>
         </div>
       </Link>
 
@@ -34,7 +39,9 @@ const CasinoGames = () => {
             alt="Slot"
             placeholder="blur"
           />
-          <span className="mt-2 text-xs text-white">Machine Slot</span>
+          <span className="mt-2 text-xs text-white">
+            {lan == "BN" ? "মেশিন স্লট" : "Machine Slot"}
+          </span>
         </div>
       </Link>
 
@@ -48,7 +55,9 @@ const CasinoGames = () => {
             alt="Wheel"
             placeholder="blur"
           />
-          <span className="mt-2 text-xs text-white">Roulette Wheel</span>
+          <span className="mt-2 text-xs text-white">
+            {lan == "BN" ? "রুলেট হুইল" : "Roulette Wheel"}
+          </span>
         </div>
       </Link>
 
@@ -60,7 +69,9 @@ const CasinoGames = () => {
             alt="dice"
             placeholder="blur"
           />
-          <span className="mt-2 text-xs text-white">Dice</span>
+          <span className="mt-2 text-xs text-white">
+            {lan == "BN" ? "ডাইস" : "Dice"}
+          </span>
         </div>
       </Link>
 
@@ -72,7 +83,9 @@ const CasinoGames = () => {
             alt="Heads - Tails"
             placeholder="blur"
           />
-          <span className="mt-2 text-xs text-white">Heads/Tails</span>
+          <span className="mt-2 text-xs text-white">
+            {lan == "BN" ? "হেডস/টেইলস" : "Heads/Tails"}
+          </span>
         </div>
       </Link>
     </div>

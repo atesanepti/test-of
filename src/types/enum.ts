@@ -39,3 +39,4 @@ export enum Coin {
   HEADS = "heads",
   TAILS = "tails",
 }
+

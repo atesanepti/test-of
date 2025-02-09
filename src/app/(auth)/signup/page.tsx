@@ -1,24 +1,26 @@
+"use client";
 import Form from "@/components/auth/Form";
 import Signup from "@/components/auth/Signup";
-import { Metadata } from "next";
+import { useTranslation } from "@/lib/store";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Signup | CasinoCity24",
-  description:
-    " Sign up now to join Bangladesh’s top online casino and betting site. Create an account to start playing, betting, and winning real money!",
-};
-
 const SignupPage = () => {
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="auth-bg">
       <div className="cantainer">
         <div className="cantainer">
           <Form
-            formTitle="sign-up"
-            formIntro="Get access your existing account?"
-            formActionText="You have no account?"
-            formActionLink="Signin"
+            formTitle={lan == "BN" ? "সাইন আপ" : "sign-up"}
+            formIntro={
+              lan == "BN"
+                ? "আপনার বিদ্যমান অ্যাকাউন্টে প্রবেশ করুন?"
+                : "Get access your existing account?"
+            }
+            formActionText={
+              lan == "BN" ? "আপনার কোন অ্যাকাউন্ট নেই?" : "You have no account?"
+            }
+            formActionLink={lan == "BN" ? "সাইন ইন" : "Signin"}
             formActionHref="/signin"
           >
             <Signup />

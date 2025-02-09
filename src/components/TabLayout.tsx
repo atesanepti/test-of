@@ -4,10 +4,11 @@ import { Bolt, Gamepad2, Wallet, WandSparkles } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/lib/store";
 
 const TabLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className=" relative  h-screen">
       <main className=" overflow-auto scrollbar-hide pb-16">{children}</main>
@@ -21,7 +22,8 @@ const TabLayout = ({ children }: { children: React.ReactNode }) => {
           )}
         >
           <Bolt className=" w-5 h-5 mb-1" />
-          HOME
+
+          {lan == "BN" ? "হোম" : "HOME"}
         </Link>
 
         {/* <Link
@@ -43,7 +45,8 @@ const TabLayout = ({ children }: { children: React.ReactNode }) => {
           )}
         >
           <Gamepad2 className=" w-5 h-5 mb-1" />
-          GAMES
+
+          {lan == "BN" ? "গেমস" : "GAMES"}
         </Link>
 
         <Link
@@ -54,7 +57,8 @@ const TabLayout = ({ children }: { children: React.ReactNode }) => {
           )}
         >
           <WandSparkles className=" w-5 h-5 mb-1" />
-          Lottery
+
+          {lan == "BN" ? "লটারী" : "Lottery"}
         </Link>
 
         <Link
@@ -65,7 +69,8 @@ const TabLayout = ({ children }: { children: React.ReactNode }) => {
           )}
         >
           <Wallet className=" w-5 h-5 mb-1" />
-          WALLET
+
+          {lan == "BN" ? "ওয়ালেট" : "WALLET"}
         </Link>
       </nav>
     </div>

@@ -22,6 +22,8 @@ import { useMakeDepositeMutation } from "@/lib/features/api/depositApiSlice";
 import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
 import Loader from "../Loader";
+import { useTranslation } from "@/lib/store";
+import DataList from "./../input/DataList";
 
 const DepositForm = ({
   gateway,
@@ -31,7 +33,7 @@ const DepositForm = ({
   const form = useForm<zod.infer<typeof depositSchema>>({
     defaultValues: {
       amount: "",
-      reciver: "",
+      reciver: gateway.pay_to[0] || "",
       getwayId: gateway.id,
       sender: "",
       method: gateway.method,
@@ -44,7 +46,7 @@ const DepositForm = ({
     if (gateway) {
       form.reset({
         amount: "",
-        reciver: "",
+        reciver: gateway.pay_to[0] || "",
         getwayId: gateway.id,
         sender: "",
         method: gateway.method,
@@ -54,6 +56,8 @@ const DepositForm = ({
   }, [gateway, form]);
 
   const [makeDeposit, { isLoading }] = useMakeDepositeMutation();
+
+  const lan = useTranslation((state) => state.lan);
 
   const handleMakeDeposit = (data: zod.infer<typeof depositSchema>) => {
     makeDeposit({
@@ -87,7 +91,7 @@ const DepositForm = ({
     <div className="bg-primary">
       <div className="flex items-center gap-3">
         {gateway.pay_to.map((num) => (
-          <div key={num} className="flex items-center gap-1">
+          <div key={num} className="flex items-center gap-1 mb-2">
             <span className="text-xs text-white bg-input border border-border px-3 py-2 rounded-lg">
               {num}
             </span>
@@ -105,16 +109,17 @@ const DepositForm = ({
           <FormField
             name="amount"
             control={form.control}
-            render={({ field }) => (
+            render={() => (
               <FormItem>
-                <FormLabel>Amount</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "পরিমাণ" : "Amount"} 
+                </FormLabel>
                 <FormControl>
-                  <Input
-                    disabled={isInputDisable}
-                    placeholder="Min-500 BDT"
-                    type="number"
-                    {...field}
-                  />
+                  <div>
+                    <DataList
+                      onChange={(value) => form.setValue("amount", value)}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -126,11 +131,15 @@ const DepositForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Paid From</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "থেকে পে করা হয়েছে" : "Paid From"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
-                    placeholder="Wallet number"
+                    placeholder={
+                      lan == "BN" ? "ওয়ালেট নম্বর" : "Wallet number"
+                    }
                     type="number"
                     {...field}
                   />
@@ -145,11 +154,15 @@ const DepositForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Paid To</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "পে করা হয়েছে" : "Paid To"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
-                    placeholder="Wallet number"
+                    placeholder={
+                      lan == "BN" ? "ওয়ালেট নম্বর" : "Wallet number"
+                    }
                     type="number"
                     {...field}
                   />
@@ -164,11 +177,17 @@ const DepositForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Transiction Id</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "লেনদেন আইডি" : "Transiction Id"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
-                    placeholder="Enter your payment Id"
+                    placeholder={
+                      lan == "BN"
+                        ? "পেমেন্ট আইডি প্রবেশ করুন"
+                        : "Enter your payment Id"
+                    }
                     type="text"
                     {...field}
                   />
@@ -179,7 +198,7 @@ const DepositForm = ({
           />
 
           <Button className="mt-3" size={"sm"} disabled={isInputDisable}>
-            Make Deposit
+            {lan == "BN" ? "ডিপোজিট করুন" : "Make Deposit"}
           </Button>
         </form>
       </Form>

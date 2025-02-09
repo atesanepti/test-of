@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Sheet,
@@ -13,7 +14,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getCurrentUser } from "@/lib/getCurrentUser";
 import {
   Clover,
   CreditCard,
@@ -23,12 +23,13 @@ import {
   AppWindowMac,
 } from "lucide-react";
 import { UserRole } from "@prisma/client";
+import { useCurrentUser } from "@/hook/useGetUser";
 interface AdminNavigationProps {
   children: React.ReactNode;
 }
 
-const AdminNavigation = async ({ children }: AdminNavigationProps) => {
-  const user = await getCurrentUser();
+const AdminNavigation = ({ children }: AdminNavigationProps) => {
+  const user = useCurrentUser();
 
   const role = user && user.role;
 

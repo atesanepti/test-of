@@ -6,7 +6,8 @@ import { db } from "@/lib/prisma";
 import { findUserByEmail, findUserByRef } from "@/data/user";
 import bcrypt from "bcryptjs";
 import random from "randomstring";
-import  fetchBonusInfo  from "@/data/siteSetting";
+import fetchBonusInfo from "@/data/siteSetting";
+import { signIn } from "@/auth";
 
 export const signUp = async (credentials: z.infer<typeof signupSchema>) => {
   const { email, password, phone, fullName, ref } = credentials;
@@ -64,6 +65,11 @@ export const signUp = async (credentials: z.infer<typeof signupSchema>) => {
       });
     }
 
+    await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
     return { success: true };
   } catch {
     return { error: "Somting went wrong! Try agin" };

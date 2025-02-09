@@ -155,6 +155,8 @@ interface UserFetchPayload {
     user: Prisma.usersGetPayload<{ include: { bonus: true; wallet: true } }>;
     totalWithdrawsAmount: number;
     totalDepositsAmount: number;
+    currentWallet: number;
+    profit: number;
   };
 }
 
@@ -226,3 +228,69 @@ export interface ContactInfoCreate {
 export type SiteUpdateReturn = ApiResponse & {
   payload: Prisma.siteUpdateGetPayload<object>;
 };
+
+interface SectionTitle {
+  casino_game: string;
+  aviator_game: string;
+  lottery: string;
+  about_us: string;
+  our_sponsore: string;
+  content: string;
+  navigation: string;
+  Contacet: string;
+}
+
+interface SectionContent {
+  aviator: string;
+  content: {
+    list: {
+      live_sports: string;
+      live_odds: string;
+      casino_game: string;
+      lucky_draw: string;
+      gibway: string;
+      refer_bonus: string;
+      deposit_bonus: string;
+      aviator: string;
+      crash_game: string;
+    };
+  };
+  navigation: {
+    list: {
+      lottery: string;
+      sports: string;
+      games: string;
+    };
+  };
+  about_us: {
+    list: {
+      item: {
+        h: string;
+        p: string;
+      }[];
+    };
+  };
+  prizes: {
+    "100000_taka": string;
+    iphone: string;
+    mac_book: string;
+    apple_watch: string;
+    "50000_taka": string;
+  };
+}
+
+interface Footer {
+  copyright: string;
+}
+
+interface Action {
+  play: string;
+  spand: string;
+}
+
+export interface Text {
+  section_title: SectionTitle;
+  section_content: SectionContent;
+  footer: Footer;
+  action: Action;
+}

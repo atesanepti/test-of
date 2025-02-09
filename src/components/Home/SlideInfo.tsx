@@ -10,8 +10,10 @@ const SlideInfo = () => {
         </div>
 
         <p className="flex-shrink-0 text-xs text-white">
-          20% Instant Desposit Bonus! Refer Your Friend to Up to Data Bonus
-          Cash!
+          {/* 20% Instant Desposit Bonus! Refer Your Friend to Up to Data Bonus
+          Cash! */}
+          ২০% ইনস্ট্যান্ট ডিপোজিট বোনাস! আপনার বন্ধুদের রেফার করুন এবং ডেটা
+          বোনাস ক্যাশ পর্যন্ত পান!
         </p>
       </div>
     </div>

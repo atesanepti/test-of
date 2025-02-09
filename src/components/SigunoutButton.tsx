@@ -5,8 +5,10 @@ import { LogOut } from "lucide-react";
 import { signoutApi } from "@/actions/signout";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
+import { useTranslation } from "@/lib/store";
 
 const SigunoutButton = () => {
+  const lan = useTranslation((state) => state.lan);
   const handleSignin = () => {
     signoutApi().then((res) => {
       if (res.success) {
@@ -19,7 +21,7 @@ const SigunoutButton = () => {
 
   return (
     <Button onClick={handleSignin} size={"sm"} variant={"secondary"}>
-      Signout
+      {lan == "BN" ? "সাইন আউট" : "Signout"}
       <LogOut className="w-4 h-5 " />
     </Button>
   );

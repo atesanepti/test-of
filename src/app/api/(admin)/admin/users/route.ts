@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
   const search = url.searchParams.get("search") || "";
   const status = (url.searchParams.get("status") as UserStatus) || "";
   const limit = 10;
-  const query: Prisma.usersWhereInput = {};
+  const query: Prisma.usersWhereInput = { role: { not: "ADMIN" } };
 
   const user = await getCurrentUser();
 

@@ -1,9 +1,14 @@
+"use client";
+import { useTranslation } from "@/lib/store";
 import React from "react";
 
 const WithdrawRules = ({ rules }: { rules: string[] }) => {
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="py-4 ">
-      <h3 className="text-sm font-medium text-white">*READ CAREFULLY</h3>
+      <h3 className="text-sm font-medium text-white">
+        {lan == "BN" ? "পড়ুন" : "*READ CAREFULLY"}
+      </h3>
       <div className="flex flex-col gap-2">
         {rules.map((r, i) => (
           <div key={i} className="flex gap-2 items-start mt-2">

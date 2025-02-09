@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-
+import { useTranslation } from "@/lib/store";
 import {
   Form,
   FormControl,
@@ -31,13 +31,13 @@ const Signup = () => {
     },
     resolver: zodResolver(signupSchema),
   });
-
+  const lan = useTranslation((state) => state.lan);
   const handleSignup = (data: zod.infer<typeof signupSchema>) => {
     startPending(() => {
       signUp(data).then((res) => {
         if (res.success) {
           toast.success("Account successfully created");
-          redirect("/signin");
+          redirect("/wallet");
         } else if (res.error) {
           toast.error(res.error);
         }
@@ -56,13 +56,19 @@ const Signup = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Your Full Name</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "আপনার পূর্ণ নাম" : "Your Full Name"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
                     autoComplete="off"
                     type="text"
-                    placeholder="Enter your full name"
+                    placeholder={
+                      lan == "BN"
+                        ? "আপনার পূর্ণ নাম লিখুন"
+                        : "Enter your full name"
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -76,13 +82,17 @@ const Signup = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email address</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "ইমেল ঠিকানা" : "Email address"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
                     type="email"
                     autoComplete="off"
-                    placeholder="Enter your email"
+                    placeholder={
+                      lan == "BN" ? "আপনার ইমেল লিখুন" : "Enter your email"
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -95,11 +105,17 @@ const Signup = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "ফোন নম্বর" : "Phone Number"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="Enter phone number"
+                    placeholder={
+                      lan == "BN"
+                        ? "ফোন নম্বর প্রবেশ করুন"
+                        : "Enter phone number"
+                    }
                     disabled={isInputDisable}
                     autoComplete="off"
                   />
@@ -114,12 +130,14 @@ const Signup = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "পাসওয়ার্ড " : "Password"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
                     type="password"
-                    placeholder="Password"
+                    placeholder={lan == "BN" ? "পাসওয়ার্ড " : "Password"}
                     {...field}
                   />
                 </FormControl>
@@ -132,12 +150,14 @@ const Signup = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Ref (Optional)</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "রেফ (অপশনাল)" : "Ref (Optional)"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
                     type="text"
-                    placeholder="Referral code"
+                    placeholder={lan == "BN" ? "রেফারাল কোড" : "Referral code"}
                     {...field}
                   />
                 </FormControl>
@@ -146,7 +166,7 @@ const Signup = () => {
             )}
           />
           <Button className=" mt-3" disabled={isInputDisable}>
-            Sign up
+            {lan == "BN" ? "সাইন আপ" : "Sign up"}
           </Button>
         </form>
       </Form>

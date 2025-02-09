@@ -3,10 +3,9 @@ import DataLoader from "@/components/DataLoade";
 import PageHeader from "@/components/headers/PageHeader";
 import { useCurrentUser } from "@/hook/useGetUser";
 import { useFetchUserQuery } from "@/lib/features/api/usersApiSlice";
+import { useTranslation } from "@/lib/store";
 import { Copy } from "lucide-react";
 import React from "react";
-
-
 
 const ReferCodePage = () => {
   const user = useCurrentUser();
@@ -16,15 +15,17 @@ const ReferCodePage = () => {
   const handleCopy = () => {
     navigator.clipboard.writeText(referCode!);
   };
+
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="px-2 container">
       {data && (
         <>
-          <PageHeader title="Refer" />
+          <PageHeader title={lan == "BN" ? "রেফার" : "Refer"} />
 
           <div className=" py-6 flex flex-col items-center justify-center">
             <h4 className="text-center text-lg text-white font-semibold">
-              My Refer Code
+              {lan == "BN" ? "আমার রেফার কোড" : "My Refer Code"}
             </h4>
 
             <button

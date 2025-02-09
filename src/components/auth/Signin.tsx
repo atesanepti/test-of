@@ -19,6 +19,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { signinSchema } from "@/schema";
 import { signin } from "@/actions/signin";
+import { useTranslation } from "@/lib/store";
 
 const Signin = () => {
   const params = useSearchParams();
@@ -31,7 +32,7 @@ const Signin = () => {
     },
     resolver: zodResolver(signinSchema),
   });
-
+  const lan = useTranslation((state) => state.lan);
   const handleSignin = (data: zod.infer<typeof signinSchema>) => {
     startTranstion(() => {
       signin(data).then((res) => {
@@ -56,12 +57,16 @@ const Signin = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email address</FormLabel>
+                <FormLabel>
+                  {lan == "BN" ? "ইমেল ঠিকানা" : "Email address"}
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     autoComplete="off"
-                    placeholder="Enter your email"
+                    placeholder={
+                      lan == "BN" ? "আপনার ইমেল লিখুন" : "Enter your email"
+                    }
                     {...field}
                     disabled={isInputDisable}
                   />
@@ -76,11 +81,11 @@ const Signin = () => {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{lan == "BN" ? "পাসওয়ার্ড" : "Password"}</FormLabel>
                 <FormControl>
                   <Input
                     type="Password"
-                    placeholder="Password"
+                    placeholder={lan == "BN" ? "পাসওয়ার্ড" : "Password"}
                     {...field}
                     disabled={isInputDisable}
                   />
@@ -93,10 +98,10 @@ const Signin = () => {
             href="/forget-password"
             className="block text-brand hover:underline text-right text-xs lg:text-sm mt-2"
           >
-            Forget password?
+            {lan == "BN" ? "পাসওয়ার্ড ভুলে গেছেন?" : "Forget password?"}
           </Link>
           <Button size={"sm"} className="mt-3" disabled={isInputDisable}>
-            Sign in
+            {lan == "BN" ? "সাইন ইন" : "Sign in"}
           </Button>
         </form>
       </Form>

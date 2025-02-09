@@ -3,11 +3,11 @@ import { Oswald } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
-
+import { Noto_Sans_Bengali } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { auth } from "@/auth";
 import StoreProvider from "./StoreProvider";
-
+const notoBengali = Noto_Sans_Bengali({ subsets: ["bengali"] });
 const segoe = localFont({
   src: [
     {
@@ -58,10 +58,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${oswald.variable}  ${segoe.variable} antialiased font-segoe bg-primary`}
+        className={`${oswald.variable}  ${segoe.variable} antialiased font-segoe bg-primary ${notoBengali.className}`}
       >
         <SessionProvider session={session}>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+       
+            {children}
+          </StoreProvider>
         </SessionProvider>
 
         <Toaster position="top-center" reverseOrder={false} />

@@ -30,17 +30,15 @@ const User = () => {
     id: Array.isArray(id) ? id[0] : id!,
   });
 
-  console.log({ data });
-
   const user = data?.payload.user;
 
-  const profitPercentage = (profit: number, deposit: number) => {
-    if (profit == 0 && deposit == 0) {
-      return 0;
-    }
-    const percentage = (profit / deposit) * 100;
-    return percentage;
-  };
+  // const profitPercentage = (profit: number, deposit: number) => {
+  //   if (profit == 0 && deposit == 0) {
+  //     return 0;
+  //   }
+  //   const percentage = (profit / deposit) * 100;
+  //   return percentage;
+  // };
 
   const [userUpdateApi, { isLoading: updateLoading }] = useUserUpdateMutation();
 
@@ -107,7 +105,7 @@ const User = () => {
               <br />
 
               <span className="text-xs text-muted-foreground mt-5">
-                Member Since : {moment(user?.createdAt).fromNow()}
+                Member Since : {moment(user?.createdAt).format("MMM Do YY")}
               </span>
             </div>
           </div>
@@ -160,7 +158,7 @@ const User = () => {
               <li className="flex items-center justify-between text-sm">
                 <span className="font-medium text-white">Current Wallet</span>
                 <span className="text-muted-foreground">
-                  {user?.wallet?.account}
+                  {data?.payload.currentWallet}
                 </span>
               </li>
               <li className="flex items-center justify-between text-sm">
@@ -181,17 +179,15 @@ const User = () => {
                   className={cn(
                     "text-muted-foreground",
                     `${
-                      data!.payload!.totalDepositsAmount >
-                      data!.payload.totalWithdrawsAmount + user!.wallet!.account
+                      data?.payload.profit > 0
+                        ? "text-emerald-600"
+                        : data?.payload.profit < 0
                         ? "text-destructive"
-                        : "text-emerald-600"
+                        : "text-white"
                     }`
                   )}
                 >
-                  {profitPercentage(
-                    data!.payload.totalWithdrawsAmount + user!.wallet!.account,
-                    data!.payload!.totalDepositsAmount
-                  )}
+                  {data?.payload.profit}
                 </span>
               </li>
             </ul>

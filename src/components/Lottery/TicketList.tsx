@@ -2,7 +2,7 @@
 import { useFetchLotteryTicketsQuery } from "@/lib/features/api/lotteryApiSlice";
 import React, { useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useLottery } from "@/lib/store";
+import { useLottery, useTranslation } from "@/lib/store";
 
 import moment from "moment";
 
@@ -20,6 +20,8 @@ const TicketList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
+  const lan = useTranslation((state) => state.lan);
+
   return (
     <div>
       {tickets && (
@@ -34,7 +36,7 @@ const TicketList = () => {
               <div className="flex items-start justify-between gap-5">
                 <div className="flex-1">
                   <span className="relative text-xs text-muted-foreground flex-1 block">
-                    Ticket Id
+                    {lan == "BN" ? "টিকেট আইডি" : "Ticket Id"}
                     <span className="absolute text-[10px] text-muted-foreground top-0 right-36">
                       {moment(t.createdAt).format("MMM Do YY")}
                     </span>
@@ -43,7 +45,7 @@ const TicketList = () => {
                 </div>
                 <div>
                   <span className="text-xs text-muted-foreground block">
-                    Price
+                    {lan == "BN" ? "মূল্য" : "Price"}
                   </span>
                   <span className="text-xs text-white block">{t.amount}</span>
                 </div>
@@ -74,7 +76,7 @@ const TicketList = () => {
           ))}
           {tickets.length == 0 && (
             <span className="text-sm text-muted-foreground py-7 block text-center">
-              You have to tickets
+              {lan == "BN" ? "আপনার কোনো টিকেট নেই" : "You have no tickets"}
             </span>
           )}
         </>

@@ -292,3 +292,13 @@ export const useLottery = create<{
   setTotalParticipation: (totalParticipation) =>
     set((state) => ({ ...state, totalParticipation })),
 }));
+
+interface TranslationProps {
+  lan: "EN" | "BN";
+  setLan: (lan: "EN" | "BN") => void;
+}
+
+export const useTranslation = create<TranslationProps>((set) => ({
+  lan: "BN",
+  setLan: (lan: "EN" | "BN") => set((state) => ({ ...state, lan })),
+}));

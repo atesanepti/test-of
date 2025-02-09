@@ -5,13 +5,14 @@ import { useCreateLotteryTicketsMutation } from "@/lib/features/api/lotteryApiSl
 import toast from "react-hot-toast";
 import { FetchQueryError } from "@/types/interface";
 import Loader from "../Loader";
-import { useLottery } from "@/lib/store";
+import { useLottery, useTranslation } from "@/lib/store";
 import { useFetchWalletDataQuery } from "@/lib/features/api/walletApiSlice";
 
 const LotteryAction = () => {
   const [createTicketApi, { isLoading }] = useCreateLotteryTicketsMutation();
   const totalParticipation = useLottery((state) => state.totalParticipation);
   const { data: wallet } = useFetchWalletDataQuery();
+  const lan = useTranslation((state) => state.lan);
   const handleCreateTicket = () => {
     if (!wallet || !wallet.payload) {
       return toast.error("Wait for while");
@@ -39,7 +40,7 @@ const LotteryAction = () => {
     <div className="bg-primary border border-border p-4 rounded-lg  shadow-md w-72 mt-8 mx-auto">
       <div className="flex items-center justify-between">
         <h4 className="text-sm text-white font-semibold">
-          Total participation
+          {lan == "BN" ? "মোট অংশগ্রহণ" : "Total participation"}
         </h4>
 
         <span className="bg-primary border border-border rounded-lg px-2 py-1 text-xs text-white">
@@ -53,7 +54,7 @@ const LotteryAction = () => {
         size={"sm"}
         className="mt-4"
       >
-        Get Tickey
+        {lan == "BN" ? "টিকেট নিন" : "Get Tickey"}
       </Button>
 
       {isLoading && <Loader />}

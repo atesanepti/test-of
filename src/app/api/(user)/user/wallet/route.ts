@@ -27,7 +27,8 @@ export const GET = async () => {
       },
       { status: 200 }
     );
-  } catch {
+  } catch (error){
+    console.log({error})
     return Response.json(
       { message: "Unknown Error Try agin", success: false },
       { status: 500 }

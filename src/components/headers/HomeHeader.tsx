@@ -1,13 +1,16 @@
-import { getCurrentUser } from "@/lib/getCurrentUser";
+"use client";
 import { UserRole } from "@prisma/client";
 import React from "react";
-
 import AdminNavigation from "../admin/AdminNavigation";
-import { Menu } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import AccountBalance from "../AccountBalance";
 import Logo from "../Logo";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { useCurrentUser } from "@/hook/useGetUser";
+import { useTranslation } from "@/lib/store";
+
+
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -17,8 +20,8 @@ const Header = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const HomeHeader = async () => {
-  const user = await getCurrentUser();
+const HomeHeader = () => {
+  const user = useCurrentUser();
   const role = user?.role;
 
   if (user && role === UserRole.ADMIN) {
@@ -79,8 +82,9 @@ const HomeHeaderAgent = () => {
   );
 };
 
-const HomeHeaderUser = async () => {
-  const user = await getCurrentUser();
+const HomeHeaderUser = () => {
+  const user = useCurrentUser();
+  const lan = useTranslation((state) => state.lan);
   return (
     <>
       <Logo />
@@ -88,16 +92,19 @@ const HomeHeaderUser = async () => {
         {!user && (
           <div className="flex items-center gap-2">
             <Link href="/signup">
-              <Button size={"sm"}>Signup</Button>
+              <Button size={"sm"}>{lan == "BN" ? "সাইন আপ" : "Signup"}</Button>
             </Link>
             <Link href="/signin">
               <Button size={"sm"} variant={"secondary"}>
-                Signin
+                {lan == "BN" ? "সাইন ইন" : "Signin"}
               </Button>
             </Link>
           </div>
         )}
-        <AccountBalance />
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-white flex gap-1 items-center"><User className="w-4 h-4" />{user?.fullName}</span>
+          <AccountBalance />
+        </div>
       </div>
     </>
   );

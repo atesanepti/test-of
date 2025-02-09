@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import moment from "moment";
 import { Skeleton } from "../ui/skeleton";
+import { useTranslation } from "@/lib/store";
 
 const LogsList = ({ logs }: { logs: Prisma.logGetPayload<object>[] }) => {
   return (
@@ -49,15 +50,16 @@ const LogsList = ({ logs }: { logs: Prisma.logGetPayload<object>[] }) => {
 
 const Historis = () => {
   const [selecedTab, setSelectedTab] = useState<LogType | undefined>(undefined);
-  const { data, isLoading } = useFetchLogsQuery({ logType: selecedTab });
+  const { data, isLoading, isFetching } = useFetchLogsQuery({
+    logType: selecedTab,
+  });
   const logs = data?.payload;
-
+  const lan = useTranslation((state) => state.lan);
   const [logSeenApi] = useLogSeenMutation();
-  console.log({ logs });
 
   useEffect(() => {
     logSeenApi().unwrap();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -65,30 +67,30 @@ const Historis = () => {
       <Tabs defaultValue="All" className="w-full">
         <TabsList>
           <TabsTrigger onClick={() => setSelectedTab(undefined)} value="All">
-            All
+            {lan == "BN" ? "সব" : "All"}
           </TabsTrigger>
           <TabsTrigger
             onClick={() => setSelectedTab("DEPOSIT")}
             value="Deposit"
           >
-            Deposit
+            {lan == "BN" ? "ডিপোজিট" : "Deposit"}
           </TabsTrigger>
           <TabsTrigger
             onClick={() => setSelectedTab("WITHDRAW")}
             value="Withdraw"
           >
-            Withdraw
+            {lan == "BN" ? "উত্তোলন" : "Withdraw"}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="All">
-          {logs && <LogsList logs={logs} />}
-          {logs && logs.length === 0 && (
+          {logs && !isLoading && !isFetching && <LogsList logs={logs} />}
+          {logs && logs.length === 0 && !isFetching && (
             <span className="text-sm text-muted-foreground block text-center my-5">
-              Nothink to Fetch
+              {lan == "BN" ? "তথ্য আনার কিছু নেই" : "Nothink to Fetch"}
             </span>
           )}
 
-          {isLoading && (
+          {(isLoading || isFetching) && (
             <div className="flex flex-col gap-3">
               <Skeleton className="h-12" />
               <Skeleton className="h-12" />
@@ -100,14 +102,14 @@ const Historis = () => {
           )}
         </TabsContent>
         <TabsContent value="Deposit">
-          {logs && <LogsList logs={logs} />}
-          {logs && logs.length === 0 && (
+          {logs && !isLoading && !isFetching && <LogsList logs={logs} />}
+          {logs && logs.length === 0 && !isFetching && (
             <span className="text-sm text-muted-foreground block text-center my-5">
-              Nothink to Fetch
+              {lan == "BN" ? "তথ্য আনার কিছু নেই" : "Nothink to Fetch"}
             </span>
           )}
 
-          {isLoading && (
+          {(isLoading || isFetching) && (
             <div className="flex flex-col gap-3">
               <Skeleton className="h-12" />
               <Skeleton className="h-12" />
@@ -119,14 +121,14 @@ const Historis = () => {
           )}
         </TabsContent>
         <TabsContent value="Withdraw">
-          {logs && <LogsList logs={logs} />}
-          {logs && logs.length === 0 && (
+          {logs && !isLoading && !isFetching && <LogsList logs={logs} />}
+          {logs && logs.length === 0 && !isFetching && (
             <span className="text-sm text-muted-foreground block text-center my-5">
-              Nothink to Fetch
+              {lan == "BN" ? "তথ্য আনার কিছু নেই" : "Nothink to Fetch"}
             </span>
           )}
 
-          {isLoading && (
+          {(isLoading || isFetching) && (
             <div className="flex flex-col gap-3">
               <Skeleton className="h-12" />
               <Skeleton className="h-12" />

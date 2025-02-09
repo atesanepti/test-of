@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import Image from "next/image";
@@ -14,11 +15,13 @@ import dice from "@/../public/assets/games/dice.jpg";
 // } from "@/components/ui/carousel";
 import Link from "next/link";
 import Title from "./Title";
+import { useTranslation } from "@/lib/store";
 
 const GameList = () => {
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="my-10">
-      <Title title="Casino Games" />
+      <Title title={lan == "BN" ? "ক্যাসিনো গেমস" : "Casino Games"} />
       {/* <Carousel>
         <CarouselContent>
           <CarouselItem className="basis-1/2 lg:basis-1/3 shadow-sm">
@@ -104,7 +107,7 @@ const GameList = () => {
             placeholder="blur"
           />
           <span className="text-xs text-white game-title  absolute font-oswald font-semibold left-2 bottom-2">
-            Roulette Wheel
+            {lan == "BN" ? "রুলেট হুইল" : "Roulette Wheel"}
           </span>
         </Link>
 
@@ -116,7 +119,7 @@ const GameList = () => {
             placeholder="blur"
           />
           <span className="text-xs text-white game-title  absolute font-oswald font-semibold left-2 bottom-2">
-            Machine Slot
+            {lan == "BN" ? "মেশিন স্লট" : "Machine Slot"}
           </span>
         </Link>
 
@@ -128,7 +131,7 @@ const GameList = () => {
             placeholder="blur"
           />
           <span className="text-xs text-white game-title  absolute font-oswald font-semibold left-2 bottom-2">
-            Score Multiplier
+            {lan == "BN" ? "স্কোর মাল্টিপ্লায়ার" : "Score Multiplier"}
           </span>
         </Link>
 
@@ -142,7 +145,7 @@ const GameList = () => {
             placeholder="blur"
           />
           <span className="text-xs text-white game-title  absolute font-oswald font-semibold left-2 bottom-2">
-            Dice
+            {lan == "BN" ? "ডাইস" : "Dice"}
           </span>
         </Link>
 
@@ -156,7 +159,7 @@ const GameList = () => {
             placeholder="blur"
           />
           <span className="text-xs text-white game-title  absolute font-oswald font-semibold left-2 bottom-2">
-            Heads/Tails
+            {lan == "BN" ? "হেডস/টেইলস" : "Heads/Tails"}
           </span>
         </Link>
       </div>

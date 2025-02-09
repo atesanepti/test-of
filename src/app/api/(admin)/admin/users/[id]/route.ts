@@ -27,31 +27,41 @@ export const GET = async (
       );
     }
 
-    const totalDepositsAmount = (
-      await db.deposits.aggregate({
-        where: {
-          user_id: id,
-          status: "ACCEPTED",
-        },
+    const totalDepositsAmount =
+      (
+        await db.deposits.aggregate({
+          where: {
+            user_id: id,
+            status: "ACCEPTED",
+          },
 
-        _sum: {
-          amount: true,
-        },
-      })
-    )._sum.amount;
+          _sum: {
+            amount: true,
+          },
+        })
+      )._sum.amount || 0;
 
-    const totalWithdrawsAmount = (
-      await db.withdraws.aggregate({
-        where: {
-          user_id: id,
-          status: "ACCEPTED",
-        },
+    const totalWithdrawsAmount =
+      (
+        await db.withdraws.aggregate({
+          where: {
+            user_id: id,
+            status: "ACCEPTED",
+          },
 
-        _sum: {
-          amount: true,
-        },
-      })
-    )._sum.amount;
+          _sum: {
+            amount: true,
+          },
+        })
+      )._sum.amount || 0;
+
+    const wallet = await db.wallet.findUnique({
+      where: {
+        user_id : id
+      },
+    });
+
+    const profit = totalWithdrawsAmount + wallet!.account! - totalDepositsAmount
 
     return Response.json(
       {
@@ -59,13 +69,16 @@ export const GET = async (
         message: "Fetched",
         payload: {
           user,
-          totalWithdrawsAmount: totalWithdrawsAmount || 0,
-          totalDepositsAmount: totalDepositsAmount || 0,
+          profit,
+          currentWallet: wallet?.account,
+          totalWithdrawsAmount: totalWithdrawsAmount,
+          totalDepositsAmount: totalDepositsAmount,
         },
       },
       { status: 200 }
     );
-  } catch {
+  } catch (error){
+    console.log({error})
     return Response.json(
       { success: false, message: "Unknown Error Try agin" },
       { status: 500 }

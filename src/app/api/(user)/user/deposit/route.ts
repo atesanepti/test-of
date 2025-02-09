@@ -8,8 +8,37 @@ import { NextRequest } from "next/server";
 export const POST = async (req: NextRequest) => {
   const { amount, gatewayId, transactionId, walletNumber } =
     (await req.json()) as CreateDeposit;
-
   const user = await getCurrentUser();
+
+  const existingDeposit = await db.deposits.findFirst({
+    where: {
+      user_id: user!.id,
+      transaction_id: transactionId,
+    },
+  });
+
+  if (existingDeposit) {
+    return Response.json(
+      { message: `This Request is already checked`, success: false },
+      { status: 400 }
+    );
+  }
+
+  const recentRecords = await db.deposits.findFirst({
+    where: {
+      user_id: user!.id,
+      createdAt: {
+        gte: new Date(Date.now() - 5 * 60 * 1000),
+      },
+    },
+  });
+
+  if (recentRecords) {
+    return Response.json(
+      { message: `You have a request on checking! Try later`, success: false },
+      { status: 400 }
+    );
+  }
 
   const minDeposit = (await fetchSiteInfo())?.minDeposit || 0;
 

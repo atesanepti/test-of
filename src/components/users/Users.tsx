@@ -10,7 +10,7 @@ import { Skeleton } from "../ui/skeleton";
 const Users = () => {
   const { page, search, status } = useUsersFilter((state) => state);
 
-  const { data, isLoading } = useFetchUsersQuery({
+  const { data, isLoading, isFetching } = useFetchUsersQuery({
     page: page,
     search,
     status,
@@ -20,7 +20,7 @@ const Users = () => {
 
   return (
     <>
-      {payload && (
+      {payload && !isLoading && !isFetching && (
         <>
           <UserStatistics
             statistics={{
@@ -35,7 +35,7 @@ const Users = () => {
         </>
       )}
 
-      {isLoading && (
+      {(isLoading || isFetching) && (
         <div>
           <div className="flex w-full items-center gap-2 mb-3">
             <Skeleton className="h-20 flex-1" />

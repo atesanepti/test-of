@@ -1,11 +1,14 @@
-import { getCurrentUser } from "@/lib/getCurrentUser";
+"use client";
 import Link from "next/link";
 import React from "react";
 
 import Contact from "./Contact";
+import { useCurrentUser } from "@/hook/useGetUser";
+import { useTranslation } from "@/lib/store";
 
-const Footer = async () => {
-  const user = await getCurrentUser();
+const Footer = () => {
+  const user = useCurrentUser();
+  const lan = useTranslation((state) => state.lan);
   return (
     <div className="mt-6 py-8 px-6 border-t border-t-border bg-primary">
       <div className="flex justify-between pb-4">
@@ -14,35 +17,33 @@ const Footer = async () => {
             className="text-white text-sm font-semibold 
                 "
           >
-            Content
+            {lan == "BN" ? "কনটেন্ট" : "Content"}
           </h5>
           <ul className="mt-2 flex flex-col gap-3">
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Live Sports
+              {lan == "BN" ? "লাইভ স্পোর্টস" : "Live Sports"}
             </li>
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Live Odds
+              {lan == "BN" ? "লাইভ ওডস" : "Live Odds"}
             </li>
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Casino Game
+              {lan == "BN" ? "ক্যাসিনো গেম" : "Casino Game"}
             </li>
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Lucky Draw
+              {lan == "BN" ? "লাকি ড্র" : "Lucky Draw"}
+            </li>
+
+            <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
+              {lan == "BN" ? "রেফার বোনাস" : "Refer Bonus"}
             </li>
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Gibway
+              {lan == "BN" ? "ডিপোজিট বোনাস" : "Desposit Bonus"}
             </li>
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Refer Bonus
+              {lan == "BN" ? "অ্যাভিয়েটর" : "Aviator"}
             </li>
             <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Desposit Bonus
-            </li>
-            <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Aviator
-            </li>
-            <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-              Crash Game
+              {lan == "BN" ? "ক্র্যাশ গেম" : "Crash Game"}
             </li>
           </ul>
         </div>
@@ -53,27 +54,31 @@ const Footer = async () => {
               className="text-white text-sm font-semibold 
                 "
             >
-              Navigation
+              {lan == "BN" ? "নেভিগেশন" : "Navigation"}
             </h5>
             <ul className="mt-2 flex flex-col gap-3">
               {!user && (
                 <>
                   <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-                    <Link href="/signin">Signin</Link>
+                    <Link href="/signin">
+                      {lan == "BN" ? "সাইন ইন" : "Signin"}
+                    </Link>
                   </li>
                   <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-                    <Link href="/signup">Signup</Link>
+                    <Link href="/signup">
+                      {lan == "BN" ? "সাইন আপ" : "Signup"}
+                    </Link>
                   </li>
                 </>
               )}
               <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-                Lottery
+                {lan == "BN" ? "লটারী" : "Lottery"}
               </li>
               <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-                Sports
+                {lan == "BN" ? "খেলা" : "Sports"}
               </li>
               <li className="text-xs text-muted-foreground hover:underline hover:text-white transition-all">
-                Games
+                {lan == "BN" ? "গেমস" : "Games"}
               </li>
             </ul>
           </div>
@@ -83,7 +88,9 @@ const Footer = async () => {
 
       <div className="flex items-center justify-center pt-3 border-t border-t-border">
         <span className="text-xs text-muted-foreground">
-          Casinocity Company Project
+          {lan == "BN"
+            ? "ক্যাসিনোসিটি কোম্পানি প্রজেক্ট"
+            : "Casinocity Company Project"}
         </span>
       </div>
     </div>

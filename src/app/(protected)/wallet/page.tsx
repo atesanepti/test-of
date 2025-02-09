@@ -1,4 +1,4 @@
-import WalletHeader from "@/components/wallet/WalletHeader";
+"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -6,19 +6,14 @@ import line_left from "@/../public/assets/line-left.png";
 import line_right from "@/../public/assets/line-right.png";
 import Accounts from "@/components/wallet/Accounts";
 import WalletNavigation from "@/components/wallet/WalletNavigation";
-import { Metadata } from "next";
+import { useTranslation } from "@/lib/store";
 
-export const metadata: Metadata = {
-  title: "Wallet | CasinoCity24 ",
-  description:
-    "Manage your funds with ease on Bangladesh’s top casino and betting site. Deposit, withdraw, and track your transactions securely.",
-  icons: "/assets/favicon.png",
-};
+
 
 const WalletPage = () => {
+  const lan = useTranslation((state) => state.lan);
   return (
-    <div >
-      <WalletHeader />
+    <div>
 
       <div className="container py-2  px-2">
         <div>
@@ -28,7 +23,7 @@ const WalletPage = () => {
               alt="line"
               className="absolute top-1/2 -translate-x-1/2 left-16 md:left-20 w-32 md:w-40"
             />
-            My Wallet
+            {lan == "BN" ? "আমার ওয়ালেট" : "My Wallet"}
             <Image
               src={line_right}
               width={100}

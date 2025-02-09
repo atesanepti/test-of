@@ -7,9 +7,11 @@ import facebook from "@/../public/assets/facebook.png";
 import telegram from "@/../public/assets/telegram.png";
 import whatsapp from "@/../public/assets/whatsapp.png";
 import { BadgeHelp } from "lucide-react";
+import { useTranslation } from "@/lib/store";
 const Contact = () => {
   const { data } = useFetchContactInfoQuery();
   const contactInfo = data?.payload;
+  const lan = useTranslation((state) => state.lan);
   return (
     <>
       {contactInfo && (
@@ -18,7 +20,7 @@ const Contact = () => {
             className="text-white text-sm font-semibold 
                 "
           >
-            Contacet
+            {lan == "BN" ? "যোগাযোগ" : "Contacet"}
           </h5>
           <ul className="mt-2 flex  gap-2">
             {contactInfo.facebook && (
