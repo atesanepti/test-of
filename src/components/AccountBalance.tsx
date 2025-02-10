@@ -14,16 +14,16 @@ const AccountBalance = () => {
 
   const lan = useTranslation((state) => state.lan);
   return (
-    <div className="bg-primary border border-border px-3 py-2 rounded-full relative flex gap-2 items-center">
+    <div
+      onClick={() => router.push("/deposit")}
+      className="bg-primary border border-border px-3 py-2 rounded-full relative flex gap-2 items-center cursor-pointer"
+    >
       <span className="text-xs font-medium text-white ml-4 ">
         {format(mainAccount?.account || 0, lan == "BN" ? "bn-BD" : "en-BD")}
       </span>
-      
+
       <div className=" p-1 h-full flex items-center justify-center rounded-full absolute left-0 top-1/2 -translate-y-1/2">
-        <Plus
-          onClick={() => router.push("/deposit")}
-          className="w-3 h-3 text-white"
-        />
+        <Plus className="w-3 h-3 text-white" />
       </div>
     </div>
   );

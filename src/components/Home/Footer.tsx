@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 
-import Contact from "./Contact";
+
 import { useCurrentUser } from "@/hook/useGetUser";
 import { useTranslation } from "@/lib/store";
 
@@ -10,7 +10,7 @@ const Footer = () => {
   const user = useCurrentUser();
   const lan = useTranslation((state) => state.lan);
   return (
-    <div className="mt-6 py-8 px-6 border-t border-t-border bg-primary">
+    <div className="mt-10 py-8 px-6 border-t border-t-border bg-primary">
       <div className="flex justify-between pb-4">
         <div>
           <h5
@@ -82,7 +82,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <Contact />
         </div>
       </div>
 

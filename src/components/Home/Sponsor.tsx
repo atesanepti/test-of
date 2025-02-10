@@ -10,7 +10,7 @@ import { useTranslation } from "@/lib/store";
 const Sponsor = () => {
   const lan = useTranslation((state) => state.lan);
   return (
-    <div className="my-7 px-2">
+    <div className="my-12 px-2">
       <h4 className="text-lg text-white font-medium text-center mb-2">
         {lan == "BN" ? "আমাদের স্পন্সর" : "Our Sponsor"}
       </h4>

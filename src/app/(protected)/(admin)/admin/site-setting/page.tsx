@@ -5,6 +5,7 @@ import SettingForm from "@/components/site/SettingForm";
 import Agents from "@/components/site/Agents";
 import Contact from "@/components/site/Contact";
 import { Metadata } from "next";
+import SilderInfo from "@/components/site/SilderInfo";
 
 export const metadata: Metadata = {
   title: "Site Setting | CasinoCity24",
@@ -21,6 +22,7 @@ const SiteSetting = () => {
           <SettingForm />
           <Agents />
           <Contact />
+          <SilderInfo />
         </div>
       </div>
     </div>

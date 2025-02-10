@@ -23,7 +23,7 @@ import { Skeleton } from "../ui/skeleton";
 const Agents = () => {
   const { data, isLoading } = useFetchAgentsQuery();
   const agents = data?.payload;
-  
+
   const [agentDeleteApi, { isLoading: deleteLoading }] =
     useDeleteAgentMutation();
 

@@ -20,7 +20,6 @@ import {
   LayoutDashboard,
   Settings,
   Users,
-  AppWindowMac,
 } from "lucide-react";
 import { UserRole } from "@prisma/client";
 import { useCurrentUser } from "@/hook/useGetUser";
@@ -63,19 +62,13 @@ const AdminNavigation = ({ children }: AdminNavigationProps) => {
         )}
 
         <Link
-          href="/admin"
-          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
-        >
-          <AppWindowMac className="w-4 h-5" />
-          App
-        </Link>
-        <Link
           href="/admin/dashboard"
-          className="text-sm font-medium text-white hover:text-white/90  mb-3 flex items-center gap-1"
+          className="text-sm font-medium text-white hover:text-white/90  mt-5 flex items-center gap-1"
         >
           <LayoutDashboard className="w-4 h-4" />
           Dashboard
         </Link>
+
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>

@@ -294,3 +294,9 @@ export interface Text {
   footer: Footer;
   action: Action;
 }
+
+export interface SiteInfoInput {
+  message?: string;
+}
+
+export type SiteInfoReturn = ApiResponse & { payload: Prisma.InfoGetPayload<object> };

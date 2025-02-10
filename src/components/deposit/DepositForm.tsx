@@ -111,9 +111,7 @@ const DepositForm = ({
             control={form.control}
             render={() => (
               <FormItem>
-                <FormLabel>
-                  {lan == "BN" ? "পরিমাণ" : "Amount"} 
-                </FormLabel>
+                <FormLabel>{lan == "BN" ? "পরিমাণ" : "Amount"}</FormLabel>
                 <FormControl>
                   <div>
                     <DataList
@@ -178,7 +176,7 @@ const DepositForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {lan == "BN" ? "লেনদেন আইডি" : "Transiction Id"}
+                  {lan == "BN" ? "ট্রানজেকশন আইডি" : "Transiction Id"}
                 </FormLabel>
                 <FormControl>
                   <Input

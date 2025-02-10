@@ -27,7 +27,7 @@ export const depositSchema = zod.object({
     .min(10, "Invalid Transiction Id")
     .max(10, "Invalid Transiction Id")
     .regex(/^[A-Za-z0-9]{10,20}$/, "Invalid Transiction Id"),
-    method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
+  method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
     message: "Unknown payment method",
   }),
   getwayId: zod.string(),
@@ -70,4 +70,8 @@ export const contactSchema = zod.object({
   whatsapp: zod.optional(zod.string()),
   telegram: zod.optional(zod.string()),
   facebook: zod.optional(zod.string()),
+});
+
+export const siteInfoSchema = zod.object({
+  message: zod.optional(zod.string()),
 });

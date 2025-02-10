@@ -20,7 +20,7 @@ import { useTranslation } from "@/lib/store";
 const GameList = () => {
   const lan = useTranslation((state) => state.lan);
   return (
-    <div className="my-10">
+    <div className="my-12">
       <Title title={lan == "BN" ? "ক্যাসিনো গেমস" : "Casino Games"} />
       {/* <Carousel>
         <CarouselContent>

@@ -8,6 +8,7 @@ import LuckyDraw from "@/components/Home/LuckyDraw";
 import SlideInfo from "@/components/Home/SlideInfo";
 import Sponsor from "@/components/Home/Sponsor";
 import TabLayout from "@/components/TabLayout";
+import Contact from "@/components/Home/Contact";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <LuckyDraw />
           <AboutUs />
           <Sponsor />
+          <Contact />
           <Footer />
         </div>
       </TabLayout>

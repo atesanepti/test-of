@@ -27,7 +27,9 @@ const TicketList = () => {
       {tickets && (
         <>
           {" "}
-          <h4 className="text-white text-sm font-semibold mb-2">My Tickets</h4>
+          <h4 className="text-white text-sm font-semibold mb-2">
+            {lan == "BN" ? "আমার টিকিটসমূহ." : "My Tickets"}
+          </h4>
           {tickets.map((t, i) => (
             <div
               key={i}

@@ -212,3 +212,8 @@ model siteUpdate {
   id                      String @id @default(cuid())
   updateMessage           String?
 }
+
+model Info {
+  id                      String @id @default(cuid())
+  message                 String?
+}

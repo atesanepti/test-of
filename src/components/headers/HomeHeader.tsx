@@ -9,8 +9,19 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { useCurrentUser } from "@/hook/useGetUser";
 import { useTranslation } from "@/lib/store";
-
-
+import { redirect } from "next/navigation";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSub,
+  MenubarShortcut,
+  MenubarTrigger,
+  MenubarSubTrigger,
+  MenubarSubContent,
+} from "@/components/ui/menubar";
+import { signoutApi } from "@/actions/signout";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -84,7 +95,20 @@ const HomeHeaderAgent = () => {
 
 const HomeHeaderUser = () => {
   const user = useCurrentUser();
-  const lan = useTranslation((state) => state.lan);
+  const { lan, setLan } = useTranslation((state) => state);
+
+  const handleToggleLan = (l: typeof lan) => {
+    setLan(l);
+  };
+
+  const handleSignin = async () => {
+    const response = await signoutApi();
+    if (response.error) {
+      throw new Error(response.error);
+    }
+
+    return redirect("/signin");
+  };
   return (
     <>
       <Logo />
@@ -102,7 +126,38 @@ const HomeHeaderUser = () => {
           </div>
         )}
         <div className="flex items-center gap-2">
-          <span className="text-sm text-white flex gap-1 items-center"><User className="w-4 h-4" />{user?.fullName}</span>
+          <Menubar>
+            <MenubarMenu>
+              <MenubarTrigger asChild className="bg-transparent">
+                <span className="text-sm text-white flex gap-1 items-center">
+                  <User className="w-5 h-5 bg-primary-foreground rounded-full p-1 cursor-pointer" />
+                  {user?.fullName}
+                </span>
+              </MenubarTrigger>
+
+              <MenubarContent>
+                <MenubarSub>
+                  <MenubarSubTrigger>
+                    {lan == "BN" ? "ভাষা" : "Language"}
+                  </MenubarSubTrigger>
+                  <MenubarSubContent>
+                    <MenubarItem onClick={() => handleToggleLan("EN")}>
+                      {lan == "BN" ? "ইংরেজি" : "English"}
+                      <MenubarShortcut>{lan == "EN" && "Set"}</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem onClick={() => handleToggleLan("BN")}>
+                      {lan == "BN" ? "বাংলা" : "Bangla"}
+                      <MenubarShortcut>{lan == "BN" && "Set"}</MenubarShortcut>
+                    </MenubarItem>
+                  </MenubarSubContent>
+                </MenubarSub>
+
+                <MenubarItem onClick={handleSignin}>
+                  {lan == "BN" ? "সাইন আউট" : "Signout"}
+                </MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
           <AccountBalance />
         </div>
       </div>

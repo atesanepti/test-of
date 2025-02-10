@@ -13,7 +13,7 @@ import Image from "next/image";
 const FeaturesSlider = () => {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   return (
-    <div className="my-10 ">
+    <div className="mt-10 mb-12 ">
       <Carousel
         plugins={[plugin.current]}
         className="w-full "

@@ -11,7 +11,7 @@ import { useTranslation } from "@/lib/store";
 const Crash = () => {
   const lan = useTranslation((state) => state.lan);
   return (
-    <div className="my-10">
+    <div className="my-12">
       <div className="p-2 flex items-start justify-between gap-2">
         <div className="flex-1">
           <div className="flex gap-1 justify-start">

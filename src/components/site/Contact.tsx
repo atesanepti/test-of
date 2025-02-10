@@ -115,7 +115,7 @@ const Contact = () => {
             name="telegram"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Telegram (URL)</FormLabel>
+                <FormLabel>Telegram (Username)</FormLabel>
                 <FormControl>
                   <Input
                     className="!bg-secondary-foreground !border-none"

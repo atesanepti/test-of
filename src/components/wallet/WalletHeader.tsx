@@ -30,7 +30,7 @@ const WalletHeader = () => {
     setLan(l);
   };
 
-  const handleSignin = async() => {
+  const handleSignin = async () => {
     const response = await signoutApi();
     if (response.error) {
       throw new Error(response.error);

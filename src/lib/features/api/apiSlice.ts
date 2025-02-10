@@ -18,7 +18,8 @@ export const apiSlice = createApi({
     "lottery",
     "contact",
     "log",
-    "log-notic"
+    "log-notic",
+    "info",
   ],
   endpoints: () => ({}),
 });

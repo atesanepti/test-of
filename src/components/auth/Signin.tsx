@@ -38,6 +38,7 @@ const Signin = () => {
       signin(data).then((res) => {
         if (res.success) {
           toast.success("Login successfull");
+          location.reload();
           redirect(redirectUrl || res.redirect);
         } else if (res.error) {
           toast.error(res.error);
