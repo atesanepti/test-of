@@ -31,7 +31,12 @@ const Contact = () => {
                   target="_blank"
                   className="flex flex-col justify-center items-center"
                 >
-                  <Image src={facebook} alt="Facebook" className="w-7" />
+                  <Image
+                    src={facebook}
+                    alt="Facebook"
+                    className="w-7"
+                    placeholder="blur"
+                  />
                   <span className="text-xs text-white ">Facebook</span>
                 </Link>
               </li>
@@ -47,7 +52,12 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="flex flex-col justify-center items-center"
                 >
-                  <Image src={whatsapp} alt="Whatsapp" className="w-7" />
+                  <Image
+                    src={whatsapp}
+                    alt="Whatsapp"
+                    className="w-7"
+                    placeholder="blur"
+                  />
                   <span className="text-xs text-white ">Whatsapp</span>
                 </Link>
               </li>
@@ -59,7 +69,12 @@ const Contact = () => {
                   target="_blank"
                   className="flex flex-col justify-center items-center"
                 >
-                  <Image src={telegram} alt="Telegram" className="w-7" />
+                  <Image
+                    src={telegram}
+                    alt="Telegram"
+                    className="w-7"
+                    placeholder="blur"
+                  />
                   <span className="text-xs text-white ">Telegram</span>
                 </Link>
               </li>
