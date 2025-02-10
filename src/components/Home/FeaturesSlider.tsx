@@ -1,7 +1,9 @@
 "use client";
 import Autoplay from "embla-carousel-autoplay";
 import silder_1 from "@/../public/assets/slider-1.png";
-// import silder_2 from "@/../public/assets/slider-2.png";
+import silder_2 from "@/../public/assets/slider-2.jpg";
+import silder_3 from "@/../public/assets/slider-3.jpg";
+
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +15,7 @@ import Image from "next/image";
 const FeaturesSlider = () => {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   return (
-    <div className="mt-10 mb-12 ">
+    <div className="mt-6 mb-12 ">
       <Carousel
         plugins={[plugin.current]}
         className="w-full "
@@ -21,18 +23,36 @@ const FeaturesSlider = () => {
         onMouseLeave={plugin.current.reset}
       >
         <CarouselContent>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <CarouselItem key={index}>
-              <div className="p-1">
-                <Image
-                  src={silder_1}
-                  placeholder="blur"
-                  alt="slider"
-                  className="w-full aspect-[10/4] rounded-lg object-cover"
-                />
-              </div>
-            </CarouselItem>
-          ))}
+          <CarouselItem>
+            <div className="p-1">
+              <Image
+                src={silder_1}
+                placeholder="blur"
+                alt="slider"
+                className="w-full aspect-[10/4] rounded-lg object-cover"
+              />
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-1">
+              <Image
+                src={silder_2}
+                placeholder="blur"
+                alt="slider"
+                className="w-full aspect-[10/4] rounded-lg object-cover"
+              />
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-1">
+              <Image
+                src={silder_3}
+                placeholder="blur"
+                alt="slider"
+                className="w-full aspect-[10/4] rounded-lg object-cover"
+              />
+            </div>
+          </CarouselItem>
         </CarouselContent>
       </Carousel>
     </div>

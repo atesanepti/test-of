@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import banner from "@/../public/assets/slider-2.jpeg";
+import banner from "@/../public/assets/slider-1.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import InfoMessage from "@/components/alert/InfoMessage";
 import DepositForm from "@/components/deposit/DepositForm";
@@ -25,7 +25,7 @@ const DepositPage = () => {
             <Image
               src={banner}
               alt="deposit bonus"
-              className="w-full aspect-video rounded-lg"
+              className="w-full aspect-[3/4] rounded-lg"
               placeholder="blur"
             />
           </div>

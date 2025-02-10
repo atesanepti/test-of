@@ -79,11 +79,11 @@ const Contact = () => {
       )}
 
       {isLoading && (
-        <div className="rounded-md bg-input shadow-sm h-[110px] w-full flex justify-between items-center px-2">
-          <Skeleton className="h-10 w-8 !bg-primary rounded-sm" />
-          <Skeleton className="h-10 w-8 !bg-primary rounded-sm" />
-          <Skeleton className="h-10 w-8 !bg-primary rounded-sm" />
-          <Skeleton className="h-10 w-8 !bg-primary rounded-sm" />
+        <div className="rounded-md bg-input shadow-sm h-[110px] w-full flex justify-between items-center px-8">
+          <Skeleton className="h-10 w-10 !bg-primary rounded-sm" />
+          <Skeleton className="h-10 w-10 !bg-primary rounded-sm" />
+          <Skeleton className="h-10 w-10 !bg-primary rounded-sm" />
+          <Skeleton className="h-10 w-10 !bg-primary rounded-sm" />
         </div>
       )}
     </>

@@ -9,6 +9,7 @@ import SlideInfo from "@/components/Home/SlideInfo";
 import Sponsor from "@/components/Home/Sponsor";
 import TabLayout from "@/components/TabLayout";
 import Contact from "@/components/Home/Contact";
+import Intro from "@/components/Home/Intro";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <HomeHeader />
         <div className="container">
           <FeaturesSlider />
+          <Intro />
           <SlideInfo />
           <GameList />
           <Crash />
