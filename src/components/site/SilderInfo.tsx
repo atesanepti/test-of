@@ -1,9 +1,7 @@
 "use client";
-import { siteInfoSchema, siteSettingSchema } from "@/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import zod from "zod";
+
 
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -21,12 +19,7 @@ const SilderInfo = () => {
   const { data } = useFetchSiteInfoQuery();
   const info = data?.payload;
 
-  const form = useForm<zod.infer<typeof siteInfoSchema>>({
-    defaultValues: {
-      message: info?.message || "",
-    },
-    resolver: zodResolver(siteSettingSchema),
-  });
+
 
   const handleSaveInfo = () => {
     infoUpdateApi({ message: infoText })
@@ -47,11 +40,9 @@ const SilderInfo = () => {
 
   useEffect(() => {
     if (info?.message) {
-      form.reset({
-        message: info?.message || "",
-      });
+      setInfo(info.message);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [info]);
 
   return (
@@ -65,7 +56,7 @@ const SilderInfo = () => {
           className="flex h-9 w-full text-white rounded-md border border-border bg-input px-3 py-1 mb-2 text-base transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           placeholder="Enter Contact Info"
         />
-        <Button size={"sm"} onClick={() => handleSaveInfo()}></Button>
+        <Button size={"sm"} onClick={() => handleSaveInfo()}>Save</Button>
       </div>
 
       {isLoading && <Loader />}

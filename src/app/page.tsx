@@ -18,8 +18,9 @@ export default function Home() {
         <HomeHeader />
         <div className="container">
           <FeaturesSlider />
-          <Intro />
           <SlideInfo />
+
+          <Intro />
           <GameList />
           <Crash />
           <LuckyDraw />
