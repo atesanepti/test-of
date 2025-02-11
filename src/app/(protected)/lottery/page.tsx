@@ -5,6 +5,7 @@ import LotteryGift from "@/components/Lottery/LotteryGift";
 import LotteryAction from "@/components/Lottery/LotteryAction";
 import LotteryTabs from "@/components/Lottery/LotteryTabs";
 import { Metadata } from "next";
+import LeaderBoard from "@/components/Lottery/LeaderBoard";
 
 export const metadata: Metadata = {
   title: "Lottery | CasinoCity24",
@@ -20,6 +21,7 @@ const LotteryPage = () => {
         <LotteryPrizes />
         <LotteryGift />
         <LotteryAction />
+        <LeaderBoard/>
         <LotteryTabs />
       </div>
     </div>
