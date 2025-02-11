@@ -38,7 +38,7 @@ const LeaderBoard = () => {
   const users = generateList(day);
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 bg-primary shadow-sm border border-border rounded-lg px-4">
       <div className="flex items-center justify-between py-2">
         <h4 className="mb-2 text-white text-xs md:text-sm font-medium md:font-semibold">
           {lan == "BN" ? "লিডারবোর্ড" : "Leader Board"}

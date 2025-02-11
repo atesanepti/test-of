@@ -25,7 +25,7 @@ const DepositPage = () => {
             <Image
               src={banner}
               alt="deposit bonus"
-              className="w-full aspect-[3/4] rounded-lg"
+              className="w-full aspect-[10/4] rounded-lg object-cover"
               placeholder="blur"
             />
           </div>
