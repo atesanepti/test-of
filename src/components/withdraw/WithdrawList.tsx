@@ -49,16 +49,15 @@ const WithdrawList = () => {
           />
         )}
 
-      {(isLoading ||
-        isFetching) && 
-          <div className="flex flex-col gap-3">
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-          </div>
-        }
+      {(isLoading || isFetching) && (
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+        </div>
+      )}
     </div>
   );
 };

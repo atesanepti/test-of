@@ -7,6 +7,7 @@ import {
 } from "@prisma/client";
 import { DateRange, UserStatus } from "./enum";
 
+
 /**
  * Props for Email Template
  */
@@ -299,4 +300,10 @@ export interface SiteInfoInput {
   message?: string;
 }
 
-export type SiteInfoReturn = ApiResponse & { payload: Prisma.InfoGetPayload<object> };
+export type SiteInfoReturn = ApiResponse & {
+  payload: Prisma.InfoGetPayload<object>;
+};
+
+export interface WithdrawNumberUpdateInput {
+  number: string;
+}

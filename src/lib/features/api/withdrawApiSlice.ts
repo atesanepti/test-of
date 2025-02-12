@@ -3,6 +3,7 @@ import {
   CreateWithdraw,
   FetchDataInput,
   UpdateWithdrawStatus,
+  WithdrawNumberUpdateInput,
 } from "@/types/interface";
 import { apiSlice } from "./apiSlice";
 import { Prisma } from "@prisma/client";
@@ -47,7 +48,19 @@ const withdrawApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: payload,
       }),
-      invalidatesTags : ["withdraw"]
+      invalidatesTags: ["withdraw"],
+    }),
+
+    withdrawNumberUpdate: builder.mutation<
+      ApiResponse,
+      { id: string; body: WithdrawNumberUpdateInput }
+    >({
+      query: ({ id, body }) => ({
+        url: `api/admin/payment/withdraw/${id}/number`,
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: ["withdraw"],
     }),
   }),
 });
@@ -56,4 +69,5 @@ export const {
   useMakeWithdrawMutation,
   useFetchAllWithdrawQuery,
   useUpdateWithdrawStatusMutation,
+  useWithdrawNumberUpdateMutation,
 } = withdrawApiSlice;
