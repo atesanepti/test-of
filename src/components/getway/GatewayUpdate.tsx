@@ -176,6 +176,9 @@ const GatewayUpdate = ({
                           <SelectItem value={PaymentMethod.NAGAD}>
                             Nagad
                           </SelectItem>
+                          <SelectItem value={PaymentMethod.ROCKET}>
+                            Rocket
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </FormControl>

@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     localeDetection: false, // Prevents automatic locale detection
   },
   images: {
-    domains: ["github.com"],
+    domains: ["github.com", "res.cloudinary.com"],
   },
 };
 

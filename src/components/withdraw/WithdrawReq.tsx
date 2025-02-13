@@ -64,7 +64,7 @@ const WithdrawReq = ({
     numberUpdateApi({ id, body: { number } })
       .then((res) => {
         if (res) {
-          console.log({res})
+          console.log({ res });
           toast.success("Number updated");
         }
       })
@@ -94,6 +94,8 @@ const WithdrawReq = ({
               `${
                 withdraw.gateway?.method === PaymentMethod.BKASH
                   ? "text-[#DF146E] border-[#df146e]"
+                  : withdraw.gateway.method === PaymentMethod.ROCKET
+                  ? "text-[#8C3494] border-[#8C3494]"
                   : "text-[#F7921C]   border-[#f39b36]"
               }`
             )}

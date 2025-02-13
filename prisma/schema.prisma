@@ -112,6 +112,7 @@ model bets{
 enum PaymentMethod {
   BKASH
   NAGAD
+  ROCKET
 }
 
 model gateway {
@@ -216,4 +217,9 @@ model siteUpdate {
 model Info {
   id                      String @id @default(cuid())
   message                 String?
+}
+
+model featuresImages {
+  id                      String @id @default(cuid())
+  images                  String[]
 }

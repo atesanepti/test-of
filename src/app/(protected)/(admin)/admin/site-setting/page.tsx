@@ -6,6 +6,7 @@ import Agents from "@/components/site/Agents";
 import Contact from "@/components/site/Contact";
 import { Metadata } from "next";
 import SilderInfo from "@/components/site/SilderInfo";
+import FeaturesImages from "@/components/site/FeaturesImages";
 
 export const metadata: Metadata = {
   title: "Site Setting | CasinoCity24",
@@ -19,6 +20,7 @@ const SiteSetting = () => {
       <HomeHeader />
       <div className="container py-6">
         <div className="flex flex-col gap-6">
+          <FeaturesImages/>
           <SettingForm />
           <Agents />
           <Contact />

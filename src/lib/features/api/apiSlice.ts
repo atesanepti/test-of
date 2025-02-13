@@ -20,6 +20,7 @@ export const apiSlice = createApi({
     "log",
     "log-notic",
     "info",
+    "featuresImage"
   ],
   endpoints: () => ({}),
 });

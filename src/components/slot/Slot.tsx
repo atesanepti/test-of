@@ -5,7 +5,7 @@ import { SlotGameState, useSlot } from "@/lib/store";
 import WinSlot from "./icons/WinSlot";
 import LossSlot from "./icons/LossSlot";
 import Placeholder from "./icons/Placeholder";
-import { random } from "@/lib/utils";
+// import { random } from "@/lib/utils";
 import { Info } from "lucide-react";
 import Tutorial from "./Tutorial";
 import toast from "react-hot-toast";
@@ -33,7 +33,9 @@ const Slot = () => {
 
   const handleSlotClick = (index: number) => {
     slotClick.current.play();
-    const winnerSlot = random(slotState.start, slotState.end);
+    // const winnerSlot = random(slotState.start, slotState.end);
+    //TODO : tast
+    const winnerSlot = index;
     if (winnerSlot !== index) {
       toast(`You select Explosion`, {
         icon: "🔴",

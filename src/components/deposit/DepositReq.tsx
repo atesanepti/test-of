@@ -49,6 +49,8 @@ const DepositReq = ({
               `${
                 deposit.gateway?.method === PaymentMethod.BKASH
                   ? "text-[#DF146E] border-[#df146e]"
+                  : deposit.gateway?.method == PaymentMethod.ROCKET
+                  ? "border-[#8C3494] text-[#8C3494]"
                   : "text-[#F7921C]   border-[#f39b36]"
               }`
             )}

@@ -27,27 +27,36 @@ export const depositSchema = zod.object({
     .min(10, "Invalid Transiction Id")
     .max(10, "Invalid Transiction Id")
     .regex(/^[A-Za-z0-9]{10,20}$/, "Invalid Transiction Id"),
-  method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
-    message: "Unknown payment method",
-  }),
+  method: zod.enum(
+    [PaymentMethod.BKASH, PaymentMethod.NAGAD, PaymentMethod.ROCKET],
+    {
+      message: "Unknown payment method",
+    }
+  ),
   getwayId: zod.string(),
 });
 
 export const newGatewaySchema = zod.object({
   reciver: zod.string().min(1, "Payment number is required"),
   reciverExtra: zod.optional(zod.string()),
-  method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
-    message: "Unknown payment method",
-  }),
+  method: zod.enum(
+    [PaymentMethod.BKASH, PaymentMethod.NAGAD, PaymentMethod.ROCKET],
+    {
+      message: "Unknown payment method",
+    }
+  ),
   status: zod.enum(["ACTIVE", "INACTIVE"]),
 });
 
 export const updateGatewaySchema = zod.object({
   reciver: zod.string().min(1, "Payment number is required"),
   reciverExtra: zod.optional(zod.string()),
-  method: zod.enum([PaymentMethod.BKASH, PaymentMethod.NAGAD], {
-    message: "Unknown payment method",
-  }),
+  method: zod.enum(
+    [PaymentMethod.BKASH, PaymentMethod.NAGAD, PaymentMethod.ROCKET],
+    {
+      message: "Unknown payment method",
+    }
+  ),
   status: zod.enum(["ACTIVE", "INACTIVE"]),
   depositRules: zod.array(zod.string()),
   withdrawRules: zod.array(zod.string()),

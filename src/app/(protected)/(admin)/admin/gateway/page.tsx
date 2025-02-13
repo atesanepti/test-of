@@ -10,7 +10,6 @@ const GetwayPage = () => {
 
   return (
     <div>
-      
       <div className="container px-3 ">
         <PaymentMethods
           onMethodSelect={(gateway: Prisma.gatewayGetPayload<object>) =>
@@ -18,8 +17,6 @@ const GetwayPage = () => {
           }
         />
         {gateway && <GatewayUpdate gateway={gateway} />}
-
-       
 
         <GetWayCreator />
       </div>

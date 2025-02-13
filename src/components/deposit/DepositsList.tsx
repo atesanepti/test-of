@@ -11,7 +11,7 @@ const DepositsList = () => {
     (state) => state
   );
 
-  const { data, isLoading ,isFetching} = useFetchAllDepositsQuery({
+  const { data, isLoading, isFetching } = useFetchAllDepositsQuery({
     page,
     search,
     date,
@@ -25,9 +25,7 @@ const DepositsList = () => {
   };
   return (
     <div>
-      {payload && 
-        !isLoading &&
-        !isFetching &&(
+      {payload && !isLoading && !isFetching && (
         <div>
           {payload.deposits.map((d) => (
             <DepositReq key={d.id} deposit={d} />
@@ -35,9 +33,9 @@ const DepositsList = () => {
         </div>
       )}
 
-      {payload?.deposits?.length == 0 &&(
-          <span className="text-muted text-xs">No Deposit request Found</span>
-        )}
+      {payload?.deposits?.length == 0 && (
+        <span className="text-muted text-xs">No Deposit request Found</span>
+      )}
 
       {payload &&
         payload?.deposits?.length !== 0 &&
@@ -49,16 +47,15 @@ const DepositsList = () => {
           />
         )}
 
-      {(isLoading ||
-        isFetching) && (
-          <div className="flex flex-col gap-3">
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-          </div>
-        )}
+      {(isLoading || isFetching) && (
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+        </div>
+      )}
     </div>
   );
 };

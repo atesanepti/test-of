@@ -20,7 +20,8 @@ const WheelPage = () => {
     { name: "100x", bg: "#017662", color: "white" },
     { name: "Free Spin", bg: "#6B11F8", color: "white" },
     { name: "1.5", bg: "#D70B64", color: "white" },
-    { name: "Try", bg: "#1EA8FF", color: "white" },
+    //TODO : tast { name: "Try", bg: "#1EA8FF", color: "white" },
+    { name: "10x", bg: "#1EA8FF", color: "white" },
   ];
 
   const { wallet, setWallet } = useWheel((state) => state);

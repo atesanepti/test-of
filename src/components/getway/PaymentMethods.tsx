@@ -4,6 +4,7 @@ import { PaymentMethod, Prisma } from "@prisma/client";
 
 import nagad from "@/../public/assets/nagad.png";
 import bkash from "@/../public/assets/bkash.png";
+import rocket from "@/../public/assets/rocket.png";
 import wallet from "@/../public/assets/wallet.png";
 import Image from "next/image";
 import { useGetPaymentGatewayQuery } from "@/lib/features/api/gatewayApiSlice";
@@ -72,6 +73,8 @@ const PaymentMethods = ({
                       ? bkash
                       : g.method === PaymentMethod.NAGAD
                       ? nagad
+                      : g.method === PaymentMethod.ROCKET
+                      ? rocket
                       : wallet
                   }
                   alt={g.method}
