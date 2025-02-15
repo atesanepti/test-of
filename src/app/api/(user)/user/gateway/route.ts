@@ -19,7 +19,8 @@ export const GET = async () => {
         },
       });
     }
-
+    gateway?.sort((a,b)=> a.method.localeCompare(b.method))
+    console.log({gateway})
     return Response.json(
       {
         success: true,
