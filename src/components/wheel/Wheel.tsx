@@ -74,6 +74,7 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
   };
 
   useEffect(() => {
+    console.log("Result ", result)
     if (result) {
       if (result == "1x") {
         setSpinActive(false);
@@ -82,6 +83,14 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
           icon: "👏",
         });
         betUpdateApi({ amount: betAmount, operation: "INCREMENT" });
+        setBetAmount(0);
+      } else if (result == "1.2x") {
+        setWallet(wallet + betAmount * 1.2);
+        setSpinActive(false);
+        toast(`1.2x Multiplied! Got -${betAmount * 1.2}`, {
+          icon: "👏",
+        });
+        betUpdateApi({ amount: betAmount * 1.5, operation: "INCREMENT" });
         setBetAmount(0);
       } else if (result == "1.5x") {
         setWallet(wallet + betAmount * 1.5);
@@ -98,7 +107,16 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
       } else if (result == "10x") {
         setWallet(wallet + betAmount * 10);
         setSpinActive(false);
-        toast(`1x Multiplied! Got -${betAmount * 10}`, {
+        toast(`10x Multiplied! Got -${betAmount * 10}`, {
+          icon: "👏",
+        });
+
+        betUpdateApi({ amount: betAmount * 10, operation: "INCREMENT" });
+        setBetAmount(0);
+      } else if (result == "15x") {
+        setWallet(wallet + betAmount * 15);
+        setSpinActive(false);
+        toast(`15x Multiplied! Got -${betAmount * 15}`, {
           icon: "👏",
         });
 
@@ -119,6 +137,7 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
       } else if (result == "Try") {
         setBetAmount(0);
         setSpinActive(false);
+
         toast(`Bad Luck! Try agin`, {
           icon: "😞",
         });

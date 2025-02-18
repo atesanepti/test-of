@@ -98,6 +98,7 @@ const TicketListAdmin = () => {
           </span>
         </div>
       </div>
+      
       {tickes && tickes.length > 0 && (
         <div>
           {error && (
@@ -285,6 +286,7 @@ const TicketListAdmin = () => {
           No Tickets Found
         </span>
       )}
+
       {isLoading && <Loader />}
     </div>
   );
