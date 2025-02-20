@@ -87,9 +87,7 @@ const WithdrawForm = ({
                 <FormControl>
                   <Input
                     disabled={isInputDisable}
-                    placeholder={
-                      lan == "BN" ? "ন্যূনতম-৫০০ BDT" : "Min-500 BDT"
-                    }
+                    placeholder={lan == "BN" ? "পরিমাণ" : "Amount"}
                     type="number"
                     {...field}
                   />

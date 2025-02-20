@@ -35,8 +35,8 @@ const DepositPage = () => {
           <InfoMessage
             message={
               lan == "BN"
-                ? "দ্রষ্টব্য: যদি আপনি সময়মতো ডিপোজিট না পান, তবে অনুগ্রহ করে আপনার ডিপোজিট তথ্য সহ আমাদের টিমের সাথে যোগাযোগ করুন।"
-                : "Note : If You don't get Deposit at time please contact our Team with your deposit info."
+                ? "আপনি আপনার বিকাশ এপ্সের ভিতরে ঢুকে পেমেন্ট ( Payment ) ক্লিক করে পেমেন্ট করবেন"
+                : "You will enter your bKash app, click on (Payment) and make the payment.."
             }
           />
         </div>
