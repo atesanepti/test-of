@@ -10,18 +10,17 @@ import React, { useEffect } from "react";
 const WheelPage = () => {
   const prizes = [
     {
-      name: "Try",
+      name: "Foul",
       bg: "#FD7E17",
       color: "white",
     },
     { name: "10x", bg: "#FC9E13", color: "white" },
     { name: "1x", bg: "#FF2A0D", color: "white" },
-    { name: "1.2x", bg: "#737373", color: "white" },
     { name: "100x", bg: "#017662", color: "white" },
+    { name: "Empty", bg: "#D70B64", color: "white" },
     { name: "Free Spin", bg: "#6B11F8", color: "white" },
-    { name: "1.5x", bg: "#D70B64", color: "white" },
-    //TODO : tast { name: "Try", bg: "#1EA8FF", color: "white" },
-    { name: "15x", bg: "#1EA8FF", color: "white" },
+    { name: "1.2x", bg: "#737373", color: "white" },
+    { name: "Try", bg: "#1EA8FF", color: "white" },
   ];
 
   const { wallet, setWallet } = useWheel((state) => state);

@@ -74,7 +74,7 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
   };
 
   useEffect(() => {
-    console.log("Result ", result)
+    console.log("Result ", result);
     if (result) {
       if (result == "1x") {
         setSpinActive(false);
@@ -134,11 +134,19 @@ const LuckyWheel = ({ items }: { items: PrizeProps[] }) => {
           accountType: "BONUS",
         });
         setBetAmount(0);
-      } else if (result == "Try") {
+      } else if (result == "Try" || result == "Empty") {
         setBetAmount(0);
         setSpinActive(false);
 
         toast(`Bad Luck! Try agin`, {
+          icon: "😞",
+        });
+      } else if (result == "Foul") {
+        setBetAmount(0);
+        setSpinActive(false);
+        setWallet(wallet - 20);
+        betUpdateApi({ amount: 20, operation: "INCREMENT" });
+        toast(`Foul Touch`, {
           icon: "😞",
         });
       }

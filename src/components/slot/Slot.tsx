@@ -10,6 +10,7 @@ import { Info } from "lucide-react";
 import Tutorial from "./Tutorial";
 import toast from "react-hot-toast";
 import { format } from "@/lib/currency";
+import { random } from "@/lib/utils";
 
 const Slot = () => {
   const takeOFFSound = useRef(new Audio("/assets/audio/take_off"));
@@ -33,9 +34,8 @@ const Slot = () => {
 
   const handleSlotClick = (index: number) => {
     slotClick.current.play();
-    // const winnerSlot = random(slotState.start, slotState.end);
-    //TODO : tast
-    const winnerSlot = index;
+    const winnerSlot = random(slotState.start, slotState.end);
+
     if (winnerSlot !== index) {
       toast(`You select Explosion`, {
         icon: "🔴",

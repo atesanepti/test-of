@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import GameHeader from "@/components/multiplier/GameHeader";
 import CountDown from "@/components/multiplier/CountDown";
-import { cn, random } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import Loader from "@/components/GameLoader";
 import { useFetchWalletDataQuery } from "@/lib/features/api/walletApiSlice";
 import toast from "react-hot-toast";
@@ -17,7 +17,8 @@ import {
 import { MultiplierHistoryInput } from "@/types/interface";
 import { BetResult } from "@prisma/client";
 import { Games } from "@/types/enum";
-// import { userRecords } from "@/lib/analycis/multiplier";
+
+import { userRecords } from "@/lib/analycis/multiplier";
 
 enum GAME_STATE {
   INACTIVE = "inactive",
@@ -177,50 +178,43 @@ export default function CrashGame() {
   };
 
   const gameEndFor = () => {
-    // if (cashout) {
-    //   if (Math.random() * (50 - 10) + 20 < 0.01 + multiplier / 100) {
-    //     return true;
-    //   }
-    // } else {
-    //   if (multiplier <= 1.04) {
-    //     if (Math.round(Math.random() * 2) % 2 == 0) return true;
-    //   } else {
-    //     if (!historyPayload) {
-    //       if (Math.random() < 0.01 + multiplier / 100) {
-    //         return true;
-    //       }
-    //     } else if (historyPayload && historyPayload!.history!.length > 0) {
-    //       const { winingRate, losingRate } = userRecords(
-    //         historyPayload!.history
-    //       );
-    //       if (winingRate !== 0 && winingRate > 30) {
-    //         const startTime = Date.now();
-    //         if (startTime % 2 == 0) return true;
-    //       } else if (winingRate !== 0 && winingRate < 30) {
-    //         if (Math.random() < multiplier / 100) {
-    //           return true;
-    //         }
-    //       }
+    if (cashout) {
+      if (Math.random() * (50 - 10) + 20 < 0.01 + multiplier / 100) {
+        return true;
+      }
+    } else {
+      if (multiplier <= 1.04) {
+        if (Math.round(Math.random() * 2) % 2 == 0) return true;
+      } else {
+        if (!historyPayload) {
+          if (Math.random() < 0.01 + multiplier / 100) {
+            return true;
+          }
+        } else if (historyPayload && historyPayload!.history!.length > 0) {
+          const { winingRate, losingRate } = userRecords(
+            historyPayload!.history
+          );
+          if (winingRate !== 0 && winingRate > 30) {
+            const startTime = Date.now();
+            if (startTime % 2 == 0) return true;
+          } else if (winingRate !== 0 && winingRate < 30) {
+            if (Math.random() < multiplier / 100) {
+              return true;
+            }
+          }
 
-    //       if (losingRate !== 0 && losingRate > 10) {
-    //         if (Math.random() * 2 < multiplier / 100) {
-    //           return true;
-    //         }
-    //       } else {
-    //         if (Math.random() * 0.5 < multiplier / 100) {
-    //           return true;
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
-    //TODO : tast
-    const start = random(15, 50);
-    if (start < multiplier) {
-      return true;
+          if (losingRate !== 0 && losingRate > 10) {
+            if (Math.random() * 2 < multiplier / 100) {
+              return true;
+            }
+          } else {
+            if (Math.random() * 0.5 < multiplier / 100) {
+              return true;
+            }
+          }
+        }
+      }
     }
-    return false;
   };
 
   useEffect(() => {
